@@ -22,6 +22,7 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--white);
 }
 
 .visually-hidden {
@@ -45,8 +46,25 @@ body {
   font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--black);
-  background: var(--white);
+  background: transparent;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Wash fixo no viewport: cor nas bordas, branco no centro (creme + rosa). */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--white);
+  background-image:
+    radial-gradient(ellipse 78% 52% at 0% -6%, rgba(247, 169, 142, 0.38), transparent 64%),
+    radial-gradient(ellipse 78% 52% at 100% -4%, rgba(247, 169, 142, 0.3), transparent 64%),
+    radial-gradient(ellipse 46% 78% at -10% 48%, rgba(255, 232, 224, 0.95), transparent 62%),
+    radial-gradient(ellipse 46% 78% at 110% 58%, rgba(255, 232, 224, 0.9), transparent 62%),
+    radial-gradient(ellipse 90% 42% at 50% 108%, rgba(255, 232, 224, 0.95), transparent 66%),
+    linear-gradient(180deg, #fff3ee 0%, #ffffff 26%, #ffffff 74%, #fff6f2 100%);
 }
 
 code {
@@ -190,9 +208,7 @@ main.page-contacto {
   margin: 0;
   padding: 0;
   flex: 1;
-  background-color: var(--white);
-  background-image: radial-gradient(ellipse 55% 42% at 12% 16%, rgba(244, 194, 212, 0.2), transparent 72%),
-    radial-gradient(ellipse 50% 48% at 88% 78%, rgba(255, 232, 224, 0.85), transparent 72%);
+  background: transparent;
 }
 
 .home-main {
@@ -350,7 +366,7 @@ main.page-contacto {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  background: var(--white);
+  background: transparent;
   color: var(--black);
 }
 
@@ -386,26 +402,6 @@ main.page-contacto {
   will-change: transform, opacity, filter;
   /* both: primeiro keyframe aplica já no 1.º frame (evita um instante com opacity: 0 da classe base). */
   animation: logo-intro-exit-only 2s cubic-bezier(0.985, 0.01, 1, 0.015) both;
-}
-
-.home-slogan::before {
-  content: "";
-  position: absolute;
-  inset: -18%;
-  background: radial-gradient(ellipse 50% 40% at 18% 20%, rgba(255, 232, 224, 0.9), transparent 70%),
-    radial-gradient(ellipse 50% 42% at 82% 74%, rgba(244, 194, 212, 0.18), transparent 72%);
-  opacity: 0.75;
-  pointer-events: none;
-  animation: slogan-bg-drift 16s ease-in-out infinite alternate;
-}
-
-@keyframes slogan-bg-drift {
-  from {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  to {
-    transform: translate(2%, -1%) rotate(1deg);
-  }
 }
 
 .home-slogan__inner {
@@ -744,7 +740,6 @@ main.page-contacto {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .home-slogan::before,
   .home-slogan__brand,
   .home-slogan__word,
   .home-slogan__word--accent::after,
@@ -1868,7 +1863,7 @@ select {
 }
 
 .sobre-sec--work {
-  background: var(--white);
+  background: transparent;
   color: var(--black);
   border-top: 1px solid var(--black);
 }
@@ -2011,7 +2006,7 @@ select {
 
 .sobre-sec--equipa {
   border-top: 1px solid var(--gray-light);
-  background: linear-gradient(180deg, rgba(255, 232, 224, 0.35) 0%, var(--white) 18%);
+  background: transparent;
 }
 
 .equipa-lead {
