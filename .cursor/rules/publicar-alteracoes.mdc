@@ -12,8 +12,9 @@ Depois de alterar ficheiros deste projeto, **publica sempre** — não deixes mu
 1. Confirmar o que mudou (`git status` / diff).
 2. **Commit** com mensagem curta em português ou inglês (foco no «porquê»).
 3. **Push** para o remoto configurado (`origin`).
-4. Se o site tiver deploy automático (ex.: GitHub Pages), confirmar que o push chegou; caso contrário, fazer deploy conforme o projeto.
-5. **Responder ao utilizador com o link** do site público (e do repositório, se útil).
+4. **Deploy Vercel (produção):** `npx vercel --prod --yes` (projeto `cora-community`, pasta do site).
+5. Push para `origin` mantém backup no GitHub; o site público oficial é a Vercel.
+6. **Responder ao utilizador com o link Vercel** (e do repositório, se útil).
 
 ## Setup
 
@@ -23,10 +24,10 @@ Depois de alterar ficheiros deste projeto, **publica sempre** — não deixes mu
 
 ## Remoto e site público
 
-- Repositório: `https://github.com/tiagosilvaoaz432-coder/cora-site`
-- Site (GitHub Pages): `https://tiagosilvaoaz432-coder.github.io/cora-site/`
-- Após cada push a `main`, o Pages atualiza sozinho (pode demorar 1–2 minutos).
+- **Site (Vercel):** `https://cora-community-eight.vercel.app`
+- Repositório (backup): `https://github.com/tiagosilvaoaz432-coder/cora-site`
+- Projeto Vercel: `cora-community` (team `tiago-silvas-projects-21e40b18`)
 
 ## Windows
 
-Origin CLI pode não estar disponível; usar o remoto GitHub acima.
+Usar `npx vercel` (CLI não global). Nunca commitar `.env.local` / tokens Vercel.
