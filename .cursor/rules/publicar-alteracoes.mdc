@@ -1,0 +1,26 @@
+---
+description: Publicar sempre alterações do site após concluir tarefas
+alwaysApply: true
+---
+
+# Publicar alterações (CO:RA site)
+
+Depois de alterar ficheiros deste projeto, **publica sempre** — não deixes mudanças só no disco local.
+
+## Fluxo obrigatório
+
+1. Confirmar o que mudou (`git status` / diff).
+2. **Commit** com mensagem curta em português ou inglês (foco no «porquê»).
+3. **Push** para o remoto configurado (`origin`).
+4. Se o site tiver deploy automático (ex.: GitHub Pages), confirmar que o push chegou; caso contrário, fazer deploy conforme o projeto.
+5. **Responder ao utilizador com o link** do site público (e do repositório, se útil).
+
+## Setup
+
+- Se não existir repositório git: `git init -b main`, `.gitignore` adequado, commit inicial, remoto e push.
+- Nunca commitar segredos (`.env`, chaves, credenciais).
+- Não pedir confirmação para publicar — é o comportamento predefinido deste projeto, salvo se o utilizador disser explicitamente para não publicar numa tarefa concreta.
+
+## Windows
+
+Origin CLI pode não estar disponível; usar GitHub (ou o remoto já definido no projeto) para backup e Pages.

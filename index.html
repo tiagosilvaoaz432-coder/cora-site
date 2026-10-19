@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CO:RA — Junior iniciativa da Universidade Católica Portuguesa</title>
+  <meta name="description" content="CO:RA é a junior iniciativa da Universidade Católica Portuguesa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="CO:RA — Página inicial">
+        <img src="normal%20sem%20fundo.png" alt="" class="logo__img" width="280" height="80" decoding="async" />
+      </a>
+      <nav class="nav-main" aria-label="Navegação principal">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="sobre.html">Sobre Nós</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="loja.html" class="nav-loja">Loja</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="home-main" data-home id="conteudo-principal">
+    <section class="home-slogan" aria-label="Slogan">
+      <canvas
+        class="home-intro-canvas"
+        data-home-intro-canvas
+        aria-hidden="true"
+      ></canvas>
+      <img
+        src="completo.svg"
+        alt=""
+        class="home-intro-logo"
+        data-home-intro-logo
+        width="500"
+        height="500"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <div class="home-slogan__inner">
+        <p class="home-slogan__brand">CO:RA</p>
+        <h1 class="home-slogan__title">
+          <span class="home-slogan__word">Vision</span>
+          <span class="home-slogan__word">meets</span>
+          <span class="home-slogan__word home-slogan__word--accent">reality</span>
+        </h1>
+      </div>
+    </section>
+
+    <section class="home-team-cta" data-team-slider aria-label="Fotografias da equipa CO:RA">
+      <div class="home-team-cta__viewport">
+        <div class="home-team-cta__track" data-team-track>
+          <div class="home-team-cta__slide home-team-cta__slide--pos-equipa" style="background-image: url('equipa.jpeg');" role="img" aria-label="Equipa CO:RA"></div>
+          <div class="home-team-cta__slide home-team-cta__slide--pos-nudge" style="background-image: url('Departamentos.jpeg');" role="img" aria-label="Chefes de departamento"></div>
+          <div class="home-team-cta__slide" style="background-image: url('Direção.jpeg');" role="img" aria-label="Direção"></div>
+        </div>
+      </div>
+      <div class="home-team-cta__scrim"></div>
+      <div class="home-team-cta__content">
+        <h2 id="associa-heading" class="visually-hidden">Associa-te</h2>
+        <a href="contacto.html" class="btn btn-associate">
+          <span class="btn-associate__text">Associa-te</span>
+          <span class="btn-associate__shine" aria-hidden="true"></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="home-triple" aria-label="Método e diferenciação" data-spin-section>
+      <div class="home-triple__grid">
+        <div class="home-triple__col home-triple__col--left reveal">
+          <h2 class="home-triple__heading">O nosso método</h2>
+          <ul class="home-diff">
+            <li>
+              <span class="home-diff__dot"></span>
+              1) Diagnóstico
+            </li>
+            <li>
+              <span class="home-diff__dot"></span>
+              2) Plano
+            </li>
+            <li>
+              <span class="home-diff__dot"></span>
+              3) Implementação
+            </li>
+          </ul>
+        </div>
+        <div class="home-triple__col home-triple__col--mid">
+          <div class="home-spin">
+            <img
+              src="logocurto.png"
+              alt="Elemento visual CO:RA"
+              class="home-spin__logo"
+              data-spin-logo
+              width="200"
+              height="200"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div class="home-triple__col home-triple__col--right reveal">
+          <h2 class="home-triple__heading">O que nos diferencia</h2>
+          <ul class="home-diff">
+            <li>
+              <span class="home-diff__dot"></span>
+              Proximidade Católica — rigor académico e valores que guiam cada entrega.
+            </li>
+            <li>
+              <span class="home-diff__dot"></span>
+              Equipa transversal — cruzamos perfis para ver o problema sob várias lentes.
+            </li>
+            <li>
+              <span class="home-diff__dot"></span>
+              Execução com fôlego — do diagnóstico ao plano, acompanhamos a implementação.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-next-blank" aria-label="Próxima secção"></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-sheen" aria-hidden="true"></div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <p class="footer-brand__word">CO:RA</p>
+        <p class="footer-brand__line">Católica Students' Digital Innovation</p>
+        <p class="footer-brand__tag"><em>Vision</em> meets <em>reality</em></p>
+      </div>
+      <nav class="footer-nav" aria-labelledby="footer-nav-heading">
+        <div class="footer-nav__title-wrap">
+          <h2 id="footer-nav-heading" class="footer-heading">Mapa</h2>
+        </div>
+        <ul class="footer-nav__list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre.html">Sobre Nós</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="loja.html">Loja</a></li>
+        </ul>
+      </nav>
+      <div class="footer-cta">
+        <h2 id="footer-cta-heading" class="footer-heading">Próximo passo</h2>
+        <p class="footer-cta__copy">Transformamos pistas em entregas. Conta-nos o teu desafio.</p>
+        <a href="contacto.html" class="footer-cta__btn">Agendar reunião</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 CO:RA · Universidade Católica Portuguesa</p>
+    </div>
+  </footer>
+  <script src="js/site.js" defer></script>
+</body>
+</html>
