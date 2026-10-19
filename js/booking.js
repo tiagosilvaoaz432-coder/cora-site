@@ -450,15 +450,21 @@
       success.hidden = false;
       success.querySelector("h3").textContent = "Reunião marcada";
       var end = state.selectedStart + state.duration * 60;
-      success.querySelector("[data-cal-done-copy]").textContent =
+      var whenLine =
         formatDay(state.selectedDay) +
         ", " +
         formatTime(state.selectedStart) +
         "–" +
         formatTime(end) +
-        ". A confirmação segue para " +
-        payload.email.trim() +
         ".";
+      if (data.emailSent) {
+        success.querySelector("[data-cal-done-copy]").textContent =
+          whenLine + " Enviámos a confirmação para " + payload.email.trim() + " (inclui anexo para o calendário).";
+      } else {
+        success.querySelector("[data-cal-done-copy]").textContent =
+          whenLine +
+          " A reunião ficou no nosso calendário; se não receberes email em breve, confirma connosco em cora.ucp@gmail.com.";
+      }
     } catch (error) {
       alert.textContent = "Não foi possível reservar. Tenta de novo.";
       alert.hidden = false;

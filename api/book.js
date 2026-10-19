@@ -1,5 +1,6 @@
 const crypto = require("crypto");
 const { TIMEZONE, listSlots, loadServiceAccount, calendarId } = require("./google-calendar");
+const { sendBookingConfirmation } = require("./confirmation-mail");
 
 function send(res, status, body) {
   res.statusCode = status;
@@ -193,11 +194,24 @@ module.exports = async function handler(req, res) {
       return send(res, 502, { error: "Não foi possível reservar esse horário. Tenta outro." });
     }
     const event = await response.json().catch(() => ({}));
+    let emailSent = false;
+    try {
+      emailSent = await sendBookingConfirmation({
+        start,
+        durationMinutes: slot.duration,
+        firstName,
+        lastName,
+        email,
+      });
+    } catch (mailError) {
+      emailSent = false;
+    }
     return send(res, 200, {
       ok: true,
       start,
       duration: slot.duration,
       htmlLink: event.htmlLink || "",
+      emailSent,
     });
   } catch (error) {
     return send(res, 502, { error: "Não foi possível reservar esse horário. Tenta de novo." });

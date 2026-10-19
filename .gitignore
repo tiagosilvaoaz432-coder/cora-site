@@ -5,6 +5,7 @@
 credentials.json
 calendar.json
 *-service-account*.json
+node_modules/
 
 .vercel
 .env*
