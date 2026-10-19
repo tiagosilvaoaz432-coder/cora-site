@@ -235,7 +235,7 @@ main.page-contacto {
   flex: 1;
   /* Quando o intro em JS não corre; o script define o valor exacto (canvas + saída do logo) */
   /* intro + 0.7s pausa (ver sloganGapMs em site.js) */
-  --home-slogan-after-intro: 5.39s;
+  --home-slogan-after-intro: 4.73s;
 }
 
 .page-hero {

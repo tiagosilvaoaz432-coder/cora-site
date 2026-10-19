@@ -83,8 +83,8 @@
       sampleStep: 4,
       particleSize: 2.1,
       gatherMs: 1750,
-      holdMs: 160,
-      crossfadeMs: 780,
+      holdMs: 0,
+      crossfadeMs: 280,
       maxParticles: 4200,
       /* Fundo branco opaco não entra nos pontos nem no bitmap final. */
       inkThreshold: 232,
@@ -126,9 +126,9 @@
       return t * t * t;
     };
 
-    var easeInPow11 = function (t) {
+    var easeInPow4 = function (t) {
       t = clamp01(t);
-      return Math.pow(t, 11);
+      return Math.pow(t, 4);
     };
 
     var easeInOutCubic = function (t) {
@@ -362,8 +362,8 @@
 
       if (t >= tExitStart && logoBitmap) {
         var exitU = clamp01((t - tExitStart) / LOGO_EXIT_MS);
-        /* ease-in t¹¹: escala, fade, blur e drift; aceleração forte no fim. */
-        var exitEase = easeInPow11(exitU);
+        /* ease-in t⁴: a aproximação começa cedo e acelera no fim. */
+        var exitEase = easeInPow4(exitU);
         var exitScale = 1 + 21 * exitEase;
         var exitAlpha = 1 - exitEase;
         var exitBlur = 8 * exitEase;
