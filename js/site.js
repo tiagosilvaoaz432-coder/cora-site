@@ -77,15 +77,17 @@
     var sequenceEnded = false;
 
     var config = {
-      logoSrc: "completo.svg",
-      /* Enquadramento do lockup na home (igual ao aspect-ratio em .home-intro-logo). */
-      logoFrameAspect: 250 / 85,
-      sampleStep: 5,
+      logoSrc: "Logótipo.png",
+      /* Medido na tinta do PNG (o ficheiro é quadrado, com margem branca). */
+      logoFrameAspect: 377 / 150,
+      sampleStep: 4,
       particleSize: 2.1,
       gatherMs: 1750,
       holdMs: 160,
       crossfadeMs: 780,
-      maxParticles: 2600,
+      maxParticles: 4200,
+      /* Fundo branco opaco não entra nos pontos nem no bitmap final. */
+      inkThreshold: 232,
     };
 
     /* Igual à duração em CSS: .home-intro-logo.home-intro-logo--exit */
@@ -144,21 +146,63 @@
       };
     };
 
-    var getSourceCrop = function (img, frameAspect) {
+    var logoBitmap = null;
+
+    /* O PNG traz fundo branco opaco. Tira-se esse papel e enquadra-se só a tinta (CO:RA + legendas). */
+    var prepareLogoSprite = function (img) {
       var iw = img.naturalWidth || 1;
       var ih = img.naturalHeight || 1;
-      var srcAspect = iw / ih;
-      if (Math.abs(srcAspect - frameAspect) < 0.01) {
-        return { sx: 0, sy: 0, sw: iw, sh: ih };
+      var sprite = document.createElement("canvas");
+      sprite.width = iw;
+      sprite.height = ih;
+      var sctx = sprite.getContext("2d", { willReadFrequently: true });
+      if (!sctx) return null;
+
+      sctx.drawImage(img, 0, 0, iw, ih);
+      var imageData = sctx.getImageData(0, 0, iw, ih);
+      var data = imageData.data;
+      var minX = iw;
+      var minY = ih;
+      var maxX = -1;
+      var maxY = -1;
+      var threshold = config.inkThreshold;
+
+      for (var i = 0; i < data.length; i += 4) {
+        var lum = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        if (data[i + 3] < 28 || lum >= threshold) {
+          data[i + 3] = 0;
+          continue;
+        }
+        var p = i >> 2;
+        var px = p % iw;
+        var py = (p / iw) | 0;
+        if (px < minX) minX = px;
+        if (py < minY) minY = py;
+        if (px > maxX) maxX = px;
+        if (py > maxY) maxY = py;
       }
-      if (srcAspect > frameAspect) {
-        var sh = ih;
-        var sw = sh * frameAspect;
-        return { sx: (iw - sw) / 2, sy: 0, sw: sw, sh: sh };
+      sctx.putImageData(imageData, 0, 0);
+
+      var crop;
+      if (maxX < minX || maxY < minY) {
+        crop = { sx: 0, sy: 0, sw: iw, sh: ih };
+      } else {
+        var inkW = maxX - minX + 1;
+        var inkH = maxY - minY + 1;
+        var padX = Math.max(8, Math.round(inkW * 0.045));
+        var padY = Math.max(6, Math.round(inkH * 0.08));
+        var sx = Math.max(0, minX - padX);
+        var sy = Math.max(0, minY - padY);
+        crop = {
+          sx: sx,
+          sy: sy,
+          sw: Math.min(iw - sx, inkW + padX * 2),
+          sh: Math.min(ih - sy, inkH + padY * 2),
+        };
       }
-      var sw = iw;
-      var sh = sw / frameAspect;
-      return { sx: 0, sy: (ih - sh) / 2, sw: sw, sh: sh };
+
+      config.logoFrameAspect = crop.sw / Math.max(1, crop.sh);
+      return { canvas: sprite, crop: crop };
     };
 
     var getLogoLayout = function (w, h) {
@@ -176,12 +220,14 @@
       };
     };
 
-    var buildParticlesFromImage = function (img) {
+    var buildParticlesFromImage = function () {
+      if (!logoBitmap) return [];
+      var img = logoBitmap.canvas;
       var rect = canvas.getBoundingClientRect();
       var w = Math.max(1, rect.width);
       var h = Math.max(1, rect.height);
       layout = getLogoLayout(w, h);
-      layout.sourceCrop = getSourceCrop(img, config.logoFrameAspect);
+      layout.sourceCrop = logoBitmap.crop;
 
       var off = document.createElement("canvas");
       off.width = Math.max(1, Math.floor(layout.logoW));
@@ -296,12 +342,12 @@
         ctx.restore();
       }
 
-      if (bitmapAlpha > 0.001 && img && img.naturalWidth && t < tExitStart) {
+      if (bitmapAlpha > 0.001 && logoBitmap && t < tExitStart) {
         ctx.save();
         ctx.globalAlpha = bitmapAlpha;
         var crB = layout.sourceCrop;
         ctx.drawImage(
-          img,
+          logoBitmap.canvas,
           crB.sx,
           crB.sy,
           crB.sw,
@@ -314,7 +360,7 @@
         ctx.restore();
       }
 
-      if (t >= tExitStart && img && img.naturalWidth) {
+      if (t >= tExitStart && logoBitmap) {
         var exitU = clamp01((t - tExitStart) / LOGO_EXIT_MS);
         /* ease-in t¹¹: escala, fade, blur e drift; aceleração forte no fim. */
         var exitEase = easeInPow11(exitU);
@@ -336,7 +382,7 @@
         ctx.scale(exitScale, exitScale);
         var crE = layout.sourceCrop;
         ctx.drawImage(
-          img,
+          logoBitmap.canvas,
           crE.sx,
           crE.sy,
           crE.sw,
@@ -372,7 +418,12 @@
     img.loading = "eager";
     img.src = config.logoSrc;
     img.onload = function () {
-      particles = buildParticlesFromImage(img);
+      logoBitmap = prepareLogoSprite(img);
+      if (!logoBitmap) {
+        stop();
+        return;
+      }
+      particles = buildParticlesFromImage();
       startedAt = 0;
       sequenceEnded = false;
       canvas.style.visibility = "visible";
@@ -385,8 +436,8 @@
     var onResize = function () {
       if (sequenceEnded) return;
       setSize();
-      if (img && img.complete && img.naturalWidth) {
-        particles = buildParticlesFromImage(img);
+      if (logoBitmap) {
+        particles = buildParticlesFromImage();
       }
     };
 
