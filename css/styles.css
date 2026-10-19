@@ -400,7 +400,7 @@ main.page-contacto {
   left: 50%;
   top: 50%;
   width: clamp(22rem, 58vw, 52rem);
-  /* Lockup do Logótipo.png. O canvas mede a tinta e usa o enquadramento real. */
+  /* Lockup do Logótipo svg.svg. O canvas mede a tinta e usa o enquadramento real. */
   aspect-ratio: 377 / 150;
   height: auto;
   object-fit: contain;

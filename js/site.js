@@ -77,8 +77,8 @@
     var sequenceEnded = false;
 
     var config = {
-      logoSrc: "Logótipo.png",
-      /* Medido na tinta do PNG (o ficheiro é quadrado, com margem branca). */
+      logoSrc: "Logótipo svg.svg",
+      /* Medido na tinta do SVG (o ficheiro é quadrado, com margem vazia). */
       logoFrameAspect: 377 / 150,
       sampleStep: 4,
       particleSize: 2.1,
@@ -86,8 +86,10 @@
       holdMs: 0,
       crossfadeMs: 280,
       maxParticles: 4200,
-      /* Fundo branco opaco não entra nos pontos nem no bitmap final. */
+      /* Fundo claro não entra nos pontos nem no bitmap final. */
       inkThreshold: 232,
+      /* O SVG é rasterizado a este tamanho para a aproximação não ficar suave. */
+      rasterSize: 4096,
     };
 
     /* Igual à duração em CSS: .home-intro-logo.home-intro-logo--exit */
@@ -148,7 +150,7 @@
 
     var logoBitmap = null;
 
-    /* O PNG traz fundo branco opaco. Tira-se esse papel e enquadra-se só a tinta (CO:RA + legendas). */
+    /* Tira o papel claro e enquadra só a tinta (CO:RA + legendas). */
     var prepareLogoSprite = function (img) {
       var iw = img.naturalWidth || 1;
       var ih = img.naturalHeight || 1;
@@ -202,7 +204,71 @@
       }
 
       config.logoFrameAspect = crop.sw / Math.max(1, crop.sh);
-      return { canvas: sprite, crop: crop };
+
+      var tight = document.createElement("canvas");
+      tight.width = Math.max(1, Math.ceil(crop.sw));
+      tight.height = Math.max(1, Math.ceil(crop.sh));
+      var tctx = tight.getContext("2d");
+      if (!tctx) return { canvas: sprite, crop: crop };
+      tctx.imageSmoothingEnabled = true;
+      tctx.imageSmoothingQuality = "high";
+      tctx.drawImage(
+        sprite,
+        crop.sx,
+        crop.sy,
+        crop.sw,
+        crop.sh,
+        0,
+        0,
+        tight.width,
+        tight.height
+      );
+      return {
+        canvas: tight,
+        crop: { sx: 0, sy: 0, sw: tight.width, sh: tight.height },
+      };
+    };
+
+    /* O browser rasteriza o SVG ao tamanho indicado. Sem isto, o zoom amplia um bitmap pequeno. */
+    var loadSharpSvg = function (onReady, onFail) {
+      fetch(config.logoSrc)
+        .then(function (res) {
+          if (!res.ok) throw new Error("logo");
+          return res.text();
+        })
+        .then(function (svgText) {
+          var pixelSize = config.rasterSize;
+          var sized = svgText
+            .replace(/<!DOCTYPE[\s\S]*?>/i, "")
+            .replace(/<svg\b[\s\S]*?>/i, function (tag) {
+              var viewBox = /viewBox="([^"]+)"/.exec(tag);
+              var vb = viewBox ? viewBox[1] : "0 0 1254 1254";
+              return (
+                '<svg xmlns="http://www.w3.org/2000/svg" width="' +
+                pixelSize +
+                '" height="' +
+                pixelSize +
+                '" viewBox="' +
+                vb +
+                '" preserveAspectRatio="xMidYMid meet">'
+              );
+            });
+          var blob = new Blob([sized], { type: "image/svg+xml;charset=utf-8" });
+          var url = URL.createObjectURL(blob);
+          var image = new Image();
+          image.onload = function () {
+            URL.revokeObjectURL(url);
+            onReady(image);
+          };
+          image.onerror = function () {
+            URL.revokeObjectURL(url);
+            onFail();
+          };
+          image.src = url;
+        })
+        .catch(function () {
+          onFail();
+        });
     };
 
     var getLogoLayout = function (w, h) {
@@ -235,6 +301,8 @@
       var octx = off.getContext("2d", { willReadFrequently: true });
       if (!octx) return [];
 
+      octx.imageSmoothingEnabled = true;
+      octx.imageSmoothingQuality = "high";
       octx.clearRect(0, 0, off.width, off.height);
       var cr = layout.sourceCrop;
       octx.drawImage(img, cr.sx, cr.sy, cr.sw, cr.sh, 0, 0, off.width, off.height);
@@ -324,6 +392,8 @@
       var bitmapAlpha = crossEase;
 
       ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
 
       if (particles.length && particleMult > 0.001) {
         ctx.save();
@@ -413,25 +483,23 @@
 
     setSize();
 
-    var img = new Image();
-    img.decoding = "async";
-    img.loading = "eager";
-    img.src = config.logoSrc;
-    img.onload = function () {
-      logoBitmap = prepareLogoSprite(img);
-      if (!logoBitmap) {
+    loadSharpSvg(
+      function (image) {
+        logoBitmap = prepareLogoSprite(image);
+        if (!logoBitmap) {
+          stop();
+          return;
+        }
+        particles = buildParticlesFromImage();
+        startedAt = 0;
+        sequenceEnded = false;
+        canvas.style.visibility = "visible";
+        raf = window.requestAnimationFrame(render);
+      },
+      function () {
         stop();
-        return;
       }
-      particles = buildParticlesFromImage();
-      startedAt = 0;
-      sequenceEnded = false;
-      canvas.style.visibility = "visible";
-      raf = window.requestAnimationFrame(render);
-    };
-    img.onerror = function () {
-      stop();
-    };
+    );
 
     var onResize = function () {
       if (sequenceEnded) return;
