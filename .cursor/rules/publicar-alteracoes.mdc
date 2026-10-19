@@ -5,30 +5,29 @@ alwaysApply: true
 
 # Publicar alterações (CO:RA site)
 
-Trabalhar **sempre** na pasta `CORA/site` (site institucional HTML). **Não** publicar alterações do site na Vercel do projeto `cora-community` — essa Vercel é da **app** (`CORA/app cora`).
+Trabalhar **sempre** na pasta `CORA/site` (site institucional HTML).
 
-Depois de alterar ficheiros, **publica sempre** no ShipStatic (URL oficial abaixo).
+**Nunca** fazer deploy desta pasta no projeto Vercel `cora-community` — é a **app** (`CORA/app cora`). Não alterar deploys nem domínios da app.
 
 ## Fluxo obrigatório
 
 1. Confirmar o que mudou (`git status` / diff).
-2. **Commit** + **push** para `origin` (backup no GitHub).
-3. **Deploy ShipStatic (produção):**
-   ```bash
-   npx -y @shipstatic/ship . --domain streamy-aura-coee717.shipstatic.com
-   ```
-   Requer credencial: variável `SHIP_TOKEN` (API key `ship-…` de my.shipstatic.com) ou `~/.shiprc`.
-4. **Responder ao utilizador com o link oficial** (ShipStatic), não GitHub Pages nem Vercel.
+2. **Commit** + **push** para `origin` (backup; o repo está ligado ao projeto Vercel do site).
+3. **Deploy Vercel (produção):** `npx vercel --prod --yes` (só projeto `cora-institucional`).
+4. **Responder ao utilizador com o link Vercel do site** abaixo.
 
-## Site público (único link a partilhar)
+## Site público (institucional)
 
-**https://streamy-aura-coee717.shipstatic.com/**
+**https://cora-institucional.vercel.app**
 
-## Backup (não é o site oficial)
+- Projeto Vercel: `cora-institucional`
+- Dashboard: `https://vercel.com/tiago-silvas-projects-21e40b18/cora-institucional`
+
+## Backup
 
 - Repositório: `https://github.com/tiagosilvaoaz432-coder/cora-site`
 
-## Credenciais
+## Ignorar para o site
 
-- `SHIP_TOKEN` pode ficar em `.env.local` (gitignored) — nunca commitar.
-- Não usar `vercel deploy` nesta pasta para o site institucional.
+- ShipStatic (`streamy-aura-coee717.shipstatic.com`) — não publicar aí salvo pedido explícito.
+- GitHub Pages — não é o canal oficial.
