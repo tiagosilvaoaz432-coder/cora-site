@@ -39,19 +39,16 @@
       <section class="booking-section" aria-labelledby="agendar-heading">
         <h2 id="agendar-heading" class="booking-section__title">Agendar reunião</h2>
         <p class="booking-section__lead">
-          Marca uma reunião de 60 minutos. A disponibilidade apresentada reflete o nosso Google Calendar.
+          Reunião de 60 minutos. Os horários são os que estão livres no nosso Google Calendar.
         </p>
-        <div class="booking-embed" role="region" aria-label="Calendário de marcações">
-          <iframe
-            title="Agendamento — CO:RA"
-            src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2yiiTZY1ll9F1yCfubkLdYNYe27vwoul5IfW752fYkY69AZR1hLBmNdsZKG7-h0NDCRPAOMYSY?gv=true"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allow="fullscreen"
-          ></iframe>
+        <div class="cal" data-booking>
+          <p class="cal__loading">A carregar horários…</p>
         </div>
+        <noscript>
+          <p class="form-note"><a href="https://calendar.app.google/YiY36qwUvgDznJas5">Abre a marcação no Google Calendar</a>.</p>
+        </noscript>
         <p class="form-note">
-          Não carrega ou preferes ecrã inteiro? <a href="https://calendar.app.google/YiY36qwUvgDznJas5" target="_blank" rel="noopener noreferrer">Abre a marcação num novo separador</a>.
+          Preferes a página do Google? <a href="https://calendar.app.google/YiY36qwUvgDznJas5" target="_blank" rel="noopener noreferrer">Abre a marcação num novo separador</a>.
         </p>
       </section>
     </div>
@@ -87,5 +84,6 @@
     </div>
   </footer>
   <script src="js/site.js" defer></script>
+  <script src="js/booking.js" defer></script>
 </body>
 </html>
