@@ -21,6 +21,12 @@ Depois de alterar ficheiros deste projeto, **publica sempre** — não deixes mu
 - Nunca commitar segredos (`.env`, chaves, credenciais).
 - Não pedir confirmação para publicar — é o comportamento predefinido deste projeto, salvo se o utilizador disser explicitamente para não publicar numa tarefa concreta.
 
+## Remoto e site público
+
+- Repositório: `https://github.com/tiagosilvaoaz432-coder/cora-site`
+- Site (GitHub Pages): `https://tiagosilvaoaz432-coder.github.io/cora-site/`
+- Após cada push a `main`, o Pages atualiza sozinho (pode demorar 1–2 minutos).
+
 ## Windows
 
-Origin CLI pode não estar disponível; usar GitHub (ou o remoto já definido no projeto) para backup e Pages.
+Origin CLI pode não estar disponível; usar o remoto GitHub acima.
