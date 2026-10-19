@@ -5,29 +5,30 @@ alwaysApply: true
 
 # Publicar alterações (CO:RA site)
 
-Depois de alterar ficheiros deste projeto, **publica sempre** — não deixes mudanças só no disco local.
+Trabalhar **sempre** na pasta `CORA/site` (site institucional HTML). **Não** publicar alterações do site na Vercel do projeto `cora-community` — essa Vercel é da **app** (`CORA/app cora`).
+
+Depois de alterar ficheiros, **publica sempre** no ShipStatic (URL oficial abaixo).
 
 ## Fluxo obrigatório
 
 1. Confirmar o que mudou (`git status` / diff).
-2. **Commit** com mensagem curta em português ou inglês (foco no «porquê»).
-3. **Push** para o remoto configurado (`origin`).
-4. **Deploy Vercel (produção):** `npx vercel --prod --yes` (projeto `cora-community`, pasta do site).
-5. Push para `origin` mantém backup no GitHub; o site público oficial é a Vercel.
-6. **Responder ao utilizador com o link Vercel** (e do repositório, se útil).
+2. **Commit** + **push** para `origin` (backup no GitHub).
+3. **Deploy ShipStatic (produção):**
+   ```bash
+   npx -y @shipstatic/ship . --domain streamy-aura-coee717.shipstatic.com
+   ```
+   Requer credencial: variável `SHIP_TOKEN` (API key `ship-…` de my.shipstatic.com) ou `~/.shiprc`.
+4. **Responder ao utilizador com o link oficial** (ShipStatic), não GitHub Pages nem Vercel.
 
-## Setup
+## Site público (único link a partilhar)
 
-- Se não existir repositório git: `git init -b main`, `.gitignore` adequado, commit inicial, remoto e push.
-- Nunca commitar segredos (`.env`, chaves, credenciais).
-- Não pedir confirmação para publicar — é o comportamento predefinido deste projeto, salvo se o utilizador disser explicitamente para não publicar numa tarefa concreta.
+**https://streamy-aura-coee717.shipstatic.com/**
 
-## Remoto e site público
+## Backup (não é o site oficial)
 
-- **Site (Vercel):** `https://cora-community-eight.vercel.app`
-- Repositório (backup): `https://github.com/tiagosilvaoaz432-coder/cora-site`
-- Projeto Vercel: `cora-community` (team `tiago-silvas-projects-21e40b18`)
+- Repositório: `https://github.com/tiagosilvaoaz432-coder/cora-site`
 
-## Windows
+## Credenciais
 
-Usar `npx vercel` (CLI não global). Nunca commitar `.env.local` / tokens Vercel.
+- `SHIP_TOKEN` pode ficar em `.env.local` (gitignored) — nunca commitar.
+- Não usar `vercel deploy` nesta pasta para o site institucional.
