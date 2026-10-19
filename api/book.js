@@ -161,7 +161,7 @@ module.exports = async function handler(req, res) {
     const response = await fetch(
       "https://www.googleapis.com/calendar/v3/calendars/" +
         encodeURIComponent(calendarId()) +
-        "/events?sendUpdates=all",
+        "/events?sendUpdates=none",
       {
         method: "POST",
         headers: {
@@ -179,7 +179,6 @@ module.exports = async function handler(req, res) {
             dateTime: new Date((start + slot.duration * 60) * 1000).toISOString(),
             timeZone: TIMEZONE,
           },
-          attendees: [{ email }],
         }),
         signal: AbortSignal.timeout(8000),
       }

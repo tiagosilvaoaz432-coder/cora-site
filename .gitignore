@@ -3,6 +3,8 @@
 *.pem
 *.key
 credentials.json
+calendar.json
+*-service-account*.json
 
 .vercel
 .env*
