@@ -142,8 +142,8 @@ img {
   transition: transform 0.3s var(--ease-out);
 }
 
-.logo:hover .logo__img,
-.logo:focus-visible .logo__img {
+.logo:hover .logo-crop--header,
+.logo:focus-visible .logo-crop--header {
   transform: scale(1.03);
 }
 
@@ -157,6 +157,29 @@ img {
   width: auto;
   max-width: min(280px, 55vw);
   object-fit: contain;
+  transition: transform 0.35s var(--ease-out);
+}
+
+/* O SVG é quadrado e tem margem vazia. O recorte mostra só a tinta. */
+.logo-crop {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 639 / 219;
+  line-height: 0;
+}
+
+.logo-crop img {
+  position: absolute;
+  width: 122.32%;
+  max-width: none;
+  height: auto;
+  left: -10.86%;
+  top: -122.17%;
+}
+
+.logo-crop--header {
+  width: clamp(6.75rem, 36vw, 9.75rem);
   transition: transform 0.35s var(--ease-out);
 }
 
@@ -719,7 +742,7 @@ main.page-contacto {
 }
 
 .home-spin__logo {
-  width: clamp(84px, 13vw, 220px);
+  width: clamp(10rem, 26vw, 17.5rem);
   height: auto;
   transform-style: preserve-3d;
   transform: rotateY(calc(var(--spin-progress) * 360deg))
