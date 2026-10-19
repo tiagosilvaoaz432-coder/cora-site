@@ -134,7 +134,7 @@ img {
   gap: 0.35rem 1.1rem;
 }
 
-.nav-main a:not(.nav-loja) {
+.nav-main a {
   position: relative;
   font-size: 0.9375rem;
   font-weight: 500;
@@ -143,7 +143,7 @@ img {
   transition: color 0.25s var(--ease);
 }
 
-.nav-main a:not(.nav-loja)::after {
+.nav-main a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -156,54 +156,23 @@ img {
   transition: transform 0.35s var(--ease-out);
 }
 
-.nav-main a:not(.nav-loja):hover::after,
-.nav-main a:not(.nav-loja):focus-visible::after {
+.nav-main a:hover::after,
+.nav-main a:focus-visible::after {
   transform: scaleX(1);
   transform-origin: left;
 }
 
-.nav-main a:not(.nav-loja):hover,
-.nav-main a:not(.nav-loja):focus-visible {
+.nav-main a:hover,
+.nav-main a:focus-visible {
   color: var(--black);
 }
 
-.nav-main a:not(.nav-loja)[aria-current="page"] {
+.nav-main a[aria-current="page"] {
   border-bottom-color: var(--black);
 }
 
-.nav-main a:not(.nav-loja)[aria-current="page"]::after {
+.nav-main a[aria-current="page"]::after {
   display: none;
-}
-
-.nav-loja {
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding: 0.45rem 1.1rem;
-  border: 2px solid var(--black);
-  background: var(--white);
-  color: var(--black);
-  letter-spacing: 0.02em;
-  transition: transform 0.3s var(--ease-out), background 0.25s var(--ease),
-    color 0.25s var(--ease), box-shadow 0.3s var(--ease-out);
-}
-
-.nav-loja:hover,
-.nav-loja:focus-visible {
-  background: var(--black);
-  color: var(--white);
-  transform: translateY(-2px);
-  box-shadow: 4px 4px 0 var(--pink);
-}
-
-.nav-loja:focus-visible {
-  outline: 2px solid var(--pink);
-  outline-offset: 3px;
-}
-
-.nav-loja[aria-current="page"] {
-  background: var(--black);
-  color: var(--white);
-  box-shadow: 3px 3px 0 var(--pink);
 }
 
 /* —— Layout —— */

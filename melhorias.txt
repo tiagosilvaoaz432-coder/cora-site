@@ -2,7 +2,6 @@
 -mudar fotos do associa-te
 -mudar fotos do sobre nós para o estilo livro
 -atualizar as fotos do sobre nós
--tirar a parte da loja
 -colocar textos do Gonçalo
 -cta "pronto para lançar o próximo projeto"?
 -calendário site colocar funcional
