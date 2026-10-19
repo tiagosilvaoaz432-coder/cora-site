@@ -50,21 +50,34 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Wash fixo no viewport: cor nas bordas, branco no centro (creme + rosa). */
-body::before {
+/* Duas bolas suaves, como no fundo da JUNITEC: canto superior esquerdo e inferior direito. */
+body::before,
+body::after {
   content: "";
   position: fixed;
-  inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-color: var(--white);
-  background-image:
-    radial-gradient(ellipse 78% 52% at 0% -6%, rgba(247, 169, 142, 0.38), transparent 64%),
-    radial-gradient(ellipse 78% 52% at 100% -4%, rgba(247, 169, 142, 0.3), transparent 64%),
-    radial-gradient(ellipse 46% 78% at -10% 48%, rgba(255, 232, 224, 0.95), transparent 62%),
-    radial-gradient(ellipse 46% 78% at 110% 58%, rgba(255, 232, 224, 0.9), transparent 62%),
-    radial-gradient(ellipse 90% 42% at 50% 108%, rgba(255, 232, 224, 0.95), transparent 66%),
-    linear-gradient(180deg, #fff3ee 0%, #ffffff 26%, #ffffff 74%, #fff6f2 100%);
+  border-radius: 50%;
+}
+
+body::before {
+  width: min(40rem, 58vw);
+  height: min(40rem, 58vw);
+  top: -4rem;
+  left: -6rem;
+  background: #f6c3ab;
+  filter: blur(36px);
+  opacity: 0.85;
+}
+
+body::after {
+  width: min(46rem, 64vw);
+  height: min(46rem, 64vw);
+  right: -7rem;
+  bottom: 4vh;
+  background: #f4b89c;
+  filter: blur(42px);
+  opacity: 0.8;
 }
 
 code {
@@ -387,8 +400,8 @@ main.page-contacto {
   left: 50%;
   top: 50%;
   width: clamp(22rem, 58vw, 52rem);
-  /* SVG completo.svg é quadrado; mantém o enquadramento do lockup antigo (logo.png 250×85). */
-  aspect-ratio: 250 / 85;
+  /* Lockup do Logótipo.png. O canvas mede a tinta e usa o enquadramento real. */
+  aspect-ratio: 377 / 150;
   height: auto;
   object-fit: contain;
   transform: translate(-50%, -50%);
