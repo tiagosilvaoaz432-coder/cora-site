@@ -10,7 +10,6 @@
 
   var home = document.querySelector("[data-home]");
   var introCanvas = home ? home.querySelector("[data-home-intro-canvas]") : null;
-  var spinSection = home ? home.querySelector("[data-spin-section]") : null;
   var processTimeline = document.querySelector("[data-process] .process-timeline");
   var processSteps = processTimeline
     ? processTimeline.querySelectorAll("[data-reveal-toggle]")
@@ -54,7 +53,6 @@
     revealEls.forEach(function (el) {
       el.classList.add("is-visible");
     });
-    if (spinSection) spinSection.style.setProperty("--spin-progress", "1");
     if (processTimeline) processTimeline.style.setProperty("--process-progress", "1");
     if (processSteps && processSteps.length) {
       processSteps.forEach(function (el) {
@@ -533,52 +531,6 @@
     revealEls.forEach(function (el) {
       io.observe(el);
     });
-  }
-
-  if (spinSection) {
-    var spinLogo = spinSection.querySelector("[data-spin-logo]");
-    var spinStartDocY = null;
-    var measureSpinStart = function () {
-      if (spinLogo) {
-        var logoRect = spinLogo.getBoundingClientRect();
-        spinStartDocY = window.scrollY + logoRect.top + logoRect.height * 0.5;
-        return;
-      }
-      var fallbackRect = spinSection.getBoundingClientRect();
-      spinStartDocY = window.scrollY + fallbackRect.top + fallbackRect.height * 0.5;
-    };
-    var ticking = false;
-    var renderSpin = function () {
-      var available = Math.max(spinSection.offsetHeight - window.innerHeight, 1);
-      /* < 1: rotação 0→1 com menos scroll (ex.: 0.5 ≈ metade da distância). */
-      var spinScrollEase = 0.5;
-      var effectiveRange = Math.max(available * spinScrollEase, 1);
-      if (spinStartDocY === null) measureSpinStart();
-      /* Só anima depois do centro do viewport passar a posição inicial do logo. */
-      var viewportMidDocY = window.scrollY + window.innerHeight * 0.5;
-      var progress = (viewportMidDocY - spinStartDocY) / effectiveRange;
-
-      if (progress < 0) progress = 0;
-      if (progress > 1) progress = 1;
-
-      spinSection.style.setProperty("--spin-progress", progress.toFixed(4));
-      ticking = false;
-    };
-
-    var onSpinScroll = function () {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(renderSpin);
-    };
-    var onSpinResize = function () {
-      measureSpinStart();
-      renderSpin();
-    };
-
-    measureSpinStart();
-    renderSpin();
-    window.addEventListener("scroll", onSpinScroll, { passive: true });
-    window.addEventListener("resize", onSpinResize);
   }
 
   if (processTimeline) {

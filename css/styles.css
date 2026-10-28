@@ -685,7 +685,6 @@ main.page-recrutamento {
 
 /* Três colunas */
 .home-triple {
-  --spin-progress: 0;
   padding: clamp(3.5rem, 8vw, 6rem) 1.5rem;
   border-top: 1px solid var(--black);
   margin-top: 0;
@@ -701,9 +700,14 @@ main.page-recrutamento {
 
 @media (min-width: 768px) {
   .home-triple__grid {
-    grid-template-columns: 1fr minmax(3rem, 1.15fr) 1fr;
+    grid-template-columns: 1fr 1fr;
     align-items: start;
-    gap: 2rem 2.5rem;
+    gap: 2rem 3rem;
+  }
+
+  .home-triple__col--right {
+    border-left: 1px solid var(--gray-light);
+    padding-left: 3rem;
   }
 }
 
@@ -768,48 +772,6 @@ main.page-recrutamento {
 
 .home-diff li:hover .home-diff__dot {
   transform: scale(1.35);
-}
-
-.home-triple__col--mid {
-  min-height: 90vh;
-  position: relative;
-}
-
-@media (min-width: 768px) {
-  .home-triple__col--mid {
-    min-height: 150vh;
-    border-left: 1px solid var(--gray-light);
-    border-right: 1px solid var(--gray-light);
-    margin: 0.25rem 0;
-    padding-top: clamp(3.5rem, 9vw, 7rem);
-  }
-
-  .home-spin__logo {
-    margin-top: 0;
-  }
-}
-
-.home-spin {
-  position: sticky;
-  /* O centro do logo fixa no centro do viewport. */
-  top: 50vh;
-  transform: translateY(-50%);
-  display: grid;
-  place-items: center;
-  width: 100%;
-  min-height: min(40vh, 18rem);
-  perspective: 1200px;
-}
-
-.home-spin__logo {
-  width: clamp(10rem, 26vw, 17.5rem);
-  height: auto;
-  transform-style: preserve-3d;
-  transform: rotateY(calc(var(--spin-progress) * 360deg))
-    translateZ(calc(var(--spin-progress) * 260px))
-    scale(calc(0.95 + (var(--spin-progress) * 0.62)));
-  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.14));
-  will-change: transform;
 }
 
 .kicker {
@@ -1136,10 +1098,6 @@ main.page-recrutamento {
     opacity: 1;
     transform: none;
     transition: none;
-  }
-
-  .home-spin__logo {
-    transform: none;
   }
 
   .btn-associate:hover .btn-associate__shine {
