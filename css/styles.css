@@ -138,56 +138,19 @@ img {
 }
 
 .logo__img {
-  height: clamp(2rem, 5vw, 2.65rem);
-  width: auto;
-  max-width: min(280px, 55vw);
-  object-fit: contain;
-  transition: transform 0.35s var(--ease-out);
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-/* O SVG é quadrado e tem margem vazia. O recorte mostra só a tinta. */
 .logo-crop {
   display: block;
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 639 / 219;
   line-height: 0;
-}
-
-.logo-crop img {
-  position: absolute;
-  width: 122.32%;
-  max-width: none;
-  height: auto;
-  left: -10.86%;
-  top: -122.17%;
 }
 
 .logo-crop--header {
   width: clamp(6.75rem, 36vw, 9.75rem);
-  transition: transform 0.35s var(--ease-out);
-}
-
-/* O SVG é quadrado e tem margem vazia. O recorte mostra só a tinta, sem perder vetor. */
-.logo-crop {
-  display: block;
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 639 / 219;
-  line-height: 0;
-}
-
-.logo-crop img {
-  position: absolute;
-  width: 122.32%;
-  max-width: none;
-  height: auto;
-  left: -10.86%;
-  top: -122.17%;
-}
-
-.logo-crop--header {
-  width: clamp(6.75rem, 36vw, 9.75rem);
+  padding-bottom: 0.2rem;
   transition: transform 0.35s var(--ease-out);
 }
 
@@ -2904,7 +2867,7 @@ select {
   }
 
   .logo-crop--header {
-    width: clamp(5.75rem, 42vw, 8rem);
+    width: clamp(6.25rem, 46vw, 8.5rem);
   }
 
   .nav-toggle {
