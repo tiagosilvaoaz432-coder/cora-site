@@ -3532,22 +3532,6 @@ body.sticky-cta-active {
   max-width: none;
 }
 
-.path-card__link {
-  margin-top: auto;
-  padding-top: 25px;
-  font-family: var(--font-home);
-  font-weight: 800;
-  color: #111;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.path-card__link:hover,
-.path-card__link:focus-visible {
-  color: var(--accent-dark);
-}
-
 .path-accent {
   background: var(--pale);
 }
