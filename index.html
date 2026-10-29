@@ -18,7 +18,17 @@
           <img src="Log%C3%B3tipo%20svg.svg" alt="" class="logo__img" width="1254" height="1254" decoding="async" />
         </span>
       </a>
-      <nav class="nav-main" aria-label="Navegação principal">
+      <button
+        type="button"
+        class="nav-toggle"
+        data-nav-toggle
+        aria-controls="nav-principal"
+        aria-expanded="false"
+      >
+        <span class="visually-hidden">Abrir menu</span>
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+      </button>
+      <nav class="nav-main" id="nav-principal" data-nav-main aria-label="Navegação principal">
         <a href="index.html" aria-current="page">Home</a>
         <a href="sobre.html">Sobre Nós</a>
         <a href="servicos.html">Serviços</a>

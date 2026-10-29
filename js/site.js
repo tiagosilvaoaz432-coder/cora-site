@@ -8,6 +8,46 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+  var navToggle = document.querySelector("[data-nav-toggle]");
+  var navMain = document.querySelector("[data-nav-main]");
+  if (navToggle && navMain) {
+    var navLabel = navToggle.querySelector(".visually-hidden");
+    var setNavOpen = function (open) {
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      navMain.classList.toggle("is-open", open);
+      document.body.classList.toggle("nav-open", open);
+      if (navLabel) navLabel.textContent = open ? "Fechar menu" : "Abrir menu";
+    };
+
+    navToggle.addEventListener("click", function () {
+      setNavOpen(navToggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    navMain.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        setNavOpen(false);
+      });
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setNavOpen(false);
+    });
+
+    document.addEventListener("click", function (e) {
+      if (navToggle.getAttribute("aria-expanded") !== "true") return;
+      if (navMain.contains(e.target) || navToggle.contains(e.target)) return;
+      setNavOpen(false);
+    });
+
+    window.addEventListener(
+      "resize",
+      function () {
+        if (window.matchMedia("(min-width: 721px)").matches) setNavOpen(false);
+      },
+      { passive: true }
+    );
+  }
+
   var home = document.querySelector("[data-home]");
   var introCanvas = home ? home.querySelector("[data-home-intro-canvas]") : null;
   var processTimeline = document.querySelector("[data-process] .process-timeline");
@@ -270,7 +310,9 @@
     };
 
     var getLogoLayout = function (w, h) {
-      var logoW = Math.min(Math.max(352, w * 0.58), 832);
+      var logoW = Math.min(w * 0.78, 832);
+      if (w >= 720) logoW = Math.max(logoW, Math.min(352, w * 0.58));
+      logoW = Math.min(logoW, w * 0.92);
       var logoH = logoW / Math.max(0.001, config.logoFrameAspect);
       var cx = w / 2;
       var cy = h / 2;
