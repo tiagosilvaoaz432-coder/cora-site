@@ -53,38 +53,8 @@ body {
   font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--black);
-  background: transparent;
+  background: var(--white);
   -webkit-font-smoothing: antialiased;
-}
-
-/* Duas bolas suaves, como no fundo da JUNITEC: canto superior esquerdo e inferior direito. */
-body::before,
-body::after {
-  content: "";
-  position: fixed;
-  z-index: -1;
-  pointer-events: none;
-  border-radius: 50%;
-}
-
-body::before {
-  width: min(40rem, 58vw);
-  height: min(40rem, 58vw);
-  top: -4rem;
-  left: -6rem;
-  background: #f6c3ab;
-  filter: blur(36px);
-  opacity: 0.85;
-}
-
-body::after {
-  width: min(46rem, 64vw);
-  height: min(46rem, 64vw);
-  right: -7rem;
-  bottom: 4vh;
-  background: #f4b89c;
-  filter: blur(42px);
-  opacity: 0.8;
 }
 
 code {
