@@ -58,35 +58,6 @@
   var teamSlider = document.querySelector("[data-team-slider]");
   var teamTrack = teamSlider ? teamSlider.querySelector("[data-team-track]") : null;
 
-  var isContactPage =
-    document.querySelector("main.page-contacto") ||
-    /contacto\.html$/i.test(window.location.pathname);
-  if (!isContactPage && !document.querySelector("[data-sticky-cta]")) {
-    var stickyCta = document.createElement("aside");
-    stickyCta.className = "sticky-cta";
-    stickyCta.setAttribute("data-sticky-cta", "");
-    stickyCta.setAttribute("aria-label", "Convite para contacto");
-    stickyCta.innerHTML =
-      '<div class="sticky-cta__inner">' +
-      '<div class="sticky-cta__text">' +
-      '<p class="sticky-cta__title">Pronto para avançar com o teu próximo projeto?</p>' +
-      '<p class="sticky-cta__lead">Acompanhamos parceiros com entregas <strong>100% à medida</strong> — rigor, clareza e execução até à entrega.</p>' +
-      "</div>" +
-      '<a class="sticky-cta__btn" href="contacto.html">Contacta-nos</a>' +
-      "</div>";
-    document.body.appendChild(stickyCta);
-    document.body.classList.add("sticky-cta-active");
-
-    var syncStickyCtaHeight = function () {
-      document.documentElement.style.setProperty(
-        "--sticky-cta-h",
-        stickyCta.offsetHeight + "px"
-      );
-    };
-    syncStickyCtaHeight();
-    window.addEventListener("resize", syncStickyCtaHeight, { passive: true });
-  }
-
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (reduced) {
