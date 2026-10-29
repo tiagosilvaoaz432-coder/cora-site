@@ -48,7 +48,9 @@
   var processSteps = processTimeline
     ? processTimeline.querySelectorAll("[data-reveal-toggle]")
     : null;
-  var revealEls = document.querySelectorAll("[data-home] .reveal, main.page-sobre .reveal, main.page-servicos .reveal, main.page-recrutamento .reveal");
+  var revealEls = document.querySelectorAll(
+    "[data-home] .reveal, main.page-sobre .reveal, main.page-servicos .reveal, main.page-recrutamento .reveal"
+  );
   var teamSlider = document.querySelector("[data-team-slider]");
   var teamTrack = teamSlider ? teamSlider.querySelector("[data-team-track]") : null;
 

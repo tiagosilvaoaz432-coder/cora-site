@@ -533,7 +533,7 @@ main.page-recrutamento {
 
 .home-slogan__title {
   margin: 0;
-  font-family: var(--font-display);
+  font-family: var(--font-home-display);
   font-weight: 400;
   font-size: clamp(2.85rem, 13.5vw, 10rem);
   line-height: 0.93;
@@ -4334,6 +4334,18 @@ select {
 }
 
 @media (max-width: 950px) {
+  .servicos-index {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .servicos-index a:nth-child(2n) {
+    border-right: none;
+  }
+
+  .servicos-index a:nth-child(-n + 2) {
+    border-bottom: 1px solid #e8e2dd;
+  }
+
   .method-track {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -4377,8 +4389,19 @@ select {
 }
 
 @media (max-width: 720px) {
+  .servicos-index {
+    padding: 0 6%;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .page-servicos .service-panel.reveal,
+  .page-servicos .service-panel.reveal:nth-of-type(even),
+  .page-servicos .service-panel.reveal:nth-of-type(odd) {
+    transform: translateY(28px);
+  }
+
   .servicos-v7 {
-    padding: 0 6% 3rem;
+    padding: clamp(1.25rem, 4vw, 2rem) 6% 3rem;
   }
 
   .service-panel.always-visible {
