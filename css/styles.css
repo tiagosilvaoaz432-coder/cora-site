@@ -149,8 +149,8 @@ img {
 }
 
 .logo-crop--header {
-  width: clamp(6.75rem, 36vw, 9.75rem);
-  padding-bottom: 0.2rem;
+  width: clamp(7.5rem, 42vw, 11rem);
+  padding-bottom: 0.15rem;
   transition: transform 0.35s var(--ease-out);
 }
 
@@ -2867,7 +2867,7 @@ select {
   }
 
   .logo-crop--header {
-    width: clamp(6.25rem, 46vw, 8.5rem);
+    width: clamp(7.25rem, 52vw, 10rem);
   }
 
   .nav-toggle {
