@@ -56,6 +56,35 @@
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  var servicosIndex = document.querySelector("main.page-servicos .servicos-index");
+  if (servicosIndex) {
+    var indexLinks = Array.prototype.slice.call(servicosIndex.querySelectorAll("a[href^='#']"));
+    var indexTargets = indexLinks
+      .map(function (link) {
+        var id = link.getAttribute("href").slice(1);
+        var panel = id ? document.getElementById(id) : null;
+        return panel ? { link: link, panel: panel } : null;
+      })
+      .filter(Boolean);
+
+    var setActiveIndex = function () {
+      if (!indexTargets.length) return;
+      var marker = window.innerHeight * 0.35;
+      var active = indexTargets[0];
+      for (var i = 0; i < indexTargets.length; i++) {
+        var top = indexTargets[i].panel.getBoundingClientRect().top;
+        if (top <= marker) active = indexTargets[i];
+      }
+      indexTargets.forEach(function (item) {
+        item.link.classList.toggle("is-active", item === active);
+      });
+    };
+
+    setActiveIndex();
+    window.addEventListener("scroll", setActiveIndex, { passive: true });
+    window.addEventListener("resize", setActiveIndex);
+  }
+
   if (reduced) {
     revealEls.forEach(function (el) {
       el.classList.add("is-visible");
