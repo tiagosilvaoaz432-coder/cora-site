@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Recrutamento — CO:RA</title>
-  <meta name="description" content="Candidata-te à CO:RA, a junior iniciativa da Universidade Católica Portuguesa." />
+  <meta name="description" content="O teu próximo desafio pode começar aqui. Candidata-te à CO:RA." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -22,148 +22,84 @@
         <a href="index.html">Home</a>
         <a href="sobre.html">Sobre Nós</a>
         <a href="servicos.html">Serviços</a>
+        <a href="community.html">Community</a>
         <a href="recrutamento.html" aria-current="page">Recrutamento</a>
         <a href="contacto.html">Contacto</a>
       </nav>
     </div>
   </header>
 
-  <main class="page-recrutamento">
-    <header class="page-hero sobre-hero">
-      <p class="sobre-hero__eyebrow">Create Opportunities, Raise Ambitions</p>
-      <h1 class="sobre-hero__title">Recrutamento</h1>
-      <p class="lead sobre-hero__lead">Aprender pela prática. Com responsabilidade real.</p>
+  <main class="page-recrutamento page-editorial" id="recrutamento">
+    <header class="page-hero sobre-hero editorial-hero">
+      <p class="sobre-hero__eyebrow">Recrutamento</p>
+      <h1 class="sobre-hero__title">O teu próximo desafio pode começar aqui.</h1>
+      <p class="lead sobre-hero__lead">
+        Na CO:RA, procuramos pessoas curiosas, responsáveis e com vontade de aprender através de projetos reais. Não precisas de ter experiência profissional: valorizamos a motivação, a capacidade de colaborar e o potencial de desenvolvimento.
+      </p>
       <span class="sobre-hero__rule" aria-hidden="true"></span>
     </header>
 
-    <section class="sobre-sec" aria-labelledby="rec-ganhos">
+    <section class="sobre-sec" aria-labelledby="rec-processo">
       <div class="sobre-inner">
-        <div class="sobre-block reveal">
-          <h2 id="rec-ganhos" class="sobre-sec__title">
-            <span class="sobre-sec__title-text">O que levas daqui</span>
-          </h2>
-          <ul class="sobre-list">
-            <li><span class="sobre-list__dot"></span>Prática com organizações de fora da universidade, não só com exercícios de aula</li>
-            <li><span class="sobre-list__dot"></span>Um método claro: diagnóstico, plano e implementação, com validação antes da entrega</li>
-            <li><span class="sobre-list__dot"></span>Equipa de várias áreas, para veres o mesmo problema por mais do que uma lente</li>
-            <li><span class="sobre-list__dot"></span>Acompanhamento do chefe de departamento e da direção</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="sobre-sec sobre-sec--work" aria-labelledby="rec-dept">
-      <div class="sobre-inner sobre-inner--wide">
-        <div class="sobre-work-head reveal">
-          <h2 id="rec-dept" class="sobre-sec__title">
-            <span class="sobre-sec__title-text">Departamentos</span>
-          </h2>
-          <p class="sobre-intro">
-            Há quatro departamentos de projeto. Na conversa de candidatura vê-se onde o teu perfil encaixa.
-            <a href="sobre.html#sobre-equipa-title">Quem lidera cada área está na página Sobre Nós</a>.
-          </p>
-        </div>
-        <div class="sobre-phases reveal">
-          <article class="sobre-phase dept-card">
-            <h3 class="sobre-phase__title">Digital Solutions</h3>
-            <p>Soluções digitais pensadas para funcionar. Precisão, lógica e funcionalidade para transformar operações.</p>
-            <p class="dept-card__who">Chefe de departamento · Gonçalo Souto</p>
-          </article>
-          <article class="sobre-phase dept-card">
-            <h3 class="sobre-phase__title">Brand &amp; Growth</h3>
-            <p>Identidade, conteúdo e presença. Marca, posicionamento, mensagem, conteúdo, distribuição e crescimento.</p>
-            <p class="dept-card__who">Chefe de departamento · Diogo Almeida</p>
-          </article>
-          <article class="sobre-phase dept-card">
-            <h3 class="sobre-phase__title">Business Development</h3>
-            <p>Compreender antes de decidir. Investigação, perguntas e dados para fundamentar cada decisão.</p>
-            <p class="dept-card__who">Chefe de departamento · Guilherme Pinto</p>
-          </article>
-          <article class="sobre-phase dept-card">
-            <h3 class="sobre-phase__title">Startup &amp; Innovation</h3>
-            <p>Dar estrutura ao que ainda está a começar. Hipóteses, decisões e iteração para fazer uma ideia avançar.</p>
-            <p class="dept-card__who">Chefe de departamento · Tiago Silva</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="sobre-sec" aria-labelledby="rec-como">
-      <div class="sobre-inner sobre-inner--wide">
-        <div class="sobre-work-head reveal">
-          <h2 id="rec-como" class="sobre-sec__title">
-            <span class="sobre-sec__title-text">Como entrar</span>
-          </h2>
-          <p class="sobre-intro">Não há um formulário separado nem uma lista pública de vagas. A entrada começa numa conversa.</p>
-        </div>
-        <div class="sobre-phases reveal">
-          <article class="sobre-phase">
-            <h3 class="sobre-phase__title"><span class="sobre-phase__n">1</span> Vês onde encaixas</h3>
-            <ul class="sobre-phase__list">
-              <li>Lês os quatro departamentos</li>
-              <li>Pensas no que queres aprender</li>
-            </ul>
-          </article>
-          <article class="sobre-phase">
-            <h3 class="sobre-phase__title"><span class="sobre-phase__n">2</span> Marcas uma conversa</h3>
-            <ul class="sobre-phase__list">
-              <li>Reunião de 60 minutos</li>
-              <li>Percurso, disponibilidade e departamento</li>
-            </ul>
-          </article>
-          <article class="sobre-phase">
-            <h3 class="sobre-phase__title"><span class="sobre-phase__n">3</span> Entras numa equipa</h3>
-            <ul class="sobre-phase__list">
-              <li>Ficas com um chefe de departamento</li>
-              <li>O ritmo dos prazos combina-se nessa conversa</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="sobre-sec" id="duvidas" aria-labelledby="rec-faq">
-      <div class="sobre-inner">
-        <div class="reveal">
-          <h2 id="rec-faq" class="sobre-sec__title">
-            <span class="sobre-sec__title-text">Antes de te candidatares</span>
-          </h2>
-          <div class="faq-list">
-            <details class="faq-item">
-              <summary>Quem se pode candidatar?</summary>
-              <p>Estudantes da Universidade Católica Portuguesa. A conversa de entrada serve para perceber o teu percurso e em que departamento faz sentido entrares.</p>
-            </details>
-            <details class="faq-item">
-              <summary>Preciso de experiência?</summary>
-              <p>Não. Procuramos vontade de aprender e de trabalhar com método. A supervisão existe para quem está a começar.</p>
-            </details>
-            <details class="faq-item">
-              <summary>Em que área entro?</summary>
-              <p>Há quatro departamentos de projeto: Digital Solutions, Brand &amp; Growth, Business Development e Startup &amp; Innovation. Na candidatura alinhamos o teu perfil com uma equipa.</p>
-            </details>
-            <details class="faq-item">
-              <summary>O que ganho?</summary>
-              <p>Prática em problemas de organizações reais, trabalho com pessoas de áreas diferentes, e um percurso acompanhado por um chefe de departamento e pela direção.</p>
-            </details>
-            <details class="faq-item">
-              <summary>Qual é o compromisso?</summary>
-              <p>O ritmo combina-se na conversa de entrada. O que pedimos é presença nas entregas da tua equipa e respeito pelos prazos que ficarem combinados.</p>
-            </details>
-            <details class="faq-item">
-              <summary>Como me candidato?</summary>
-              <p>Não há um formulário à parte. A candidatura começa numa conversa de 60 minutos. Vês os departamentos e marcas a reunião.</p>
-            </details>
+        <h2 id="rec-processo" class="visually-hidden">Processo de recrutamento</h2>
+        <div class="rec-steps reveal">
+          <div class="rec-step">
+            <strong>01. Candidatura</strong>
+            <p>Formulário oficial, CV e respostas de motivação.</p>
+          </div>
+          <div class="rec-step">
+            <strong>02. Atividade coletiva</strong>
+            <p>Um desafio em equipa para observar colaboração e contributo.</p>
+          </div>
+          <div class="rec-step">
+            <strong>03. Entrevista individual</strong>
+            <p>Conversa sobre percurso, motivação e disponibilidade.</p>
+          </div>
+          <div class="rec-step">
+            <strong>04. Decisão e integração</strong>
+            <p>Resultados e período experimental acompanhado de cinco semanas.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="rec-close" aria-labelledby="rec-close-title">
-      <div class="rec-close__inner">
-        <h2 id="rec-close-title" class="rec-close__title">A candidatura é uma conversa</h2>
-        <p class="rec-close__text">Sessenta minutos para perceber o teu percurso e o departamento onde podes entrar.</p>
-        <a class="btn" href="contacto.html">Marcar conversa</a>
-        <p class="rec-close__note">Se representas uma organização, vê as <a href="index.html#faq-organizacoes">perguntas para quem contrata</a>.</p>
+    <section class="sobre-sec sobre-sec--work" id="duvidas" aria-labelledby="rec-faq">
+      <div class="sobre-inner">
+        <div class="reveal">
+          <h2 id="rec-faq" class="sobre-sec__title">
+            <span class="sobre-sec__title-text">Perguntas frequentes</span>
+          </h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Preciso de experiência?</summary>
+              <p>Não. Valorizamos a motivação e o potencial.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Posso escolher departamento?</summary>
+              <p>A afetação é definida no final do processo, considerando perfil e necessidades da organização.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Quanto tempo demora?</summary>
+              <p>Em regra, até três semanas, salvo motivo fundamentado.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Há acompanhamento?</summary>
+              <p>Sim. A integração inclui mentor e avaliação final.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="rec-status reveal">
+          Estado das candidaturas, datas e formulário oficial a confirmar.
+        </div>
+
+        <div class="candidate-guide reveal">
+          <div>
+            <h3>Guia do Candidato</h3>
+            <p>Conhece melhor o processo de recrutamento e prepara a tua candidatura à CO:RA.</p>
+          </div>
+          <a class="btn editorial-btn" href="#" aria-label="Consultar o Guia do Candidato — ligação por inserir" onclick="event.preventDefault();alert('A ligação ao Guia do Candidato será adicionada em breve.');">Consultar o Guia do Candidato ↗</a>
+        </div>
       </div>
     </section>
   </main>
@@ -184,6 +120,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="sobre.html">Sobre Nós</a></li>
           <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="community.html">Community</a></li>
           <li><a href="recrutamento.html">Recrutamento</a></li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>

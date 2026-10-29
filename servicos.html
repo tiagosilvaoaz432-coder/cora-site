@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Serviços — CO:RA</title>
-  <meta name="description" content="Quatro áreas. Diferentes formas de avançar. Digital Solutions, Brand &amp; Growth, Business Development e Startup &amp; Innovation." />
+  <meta name="description" content="Quatro áreas. Uma forma de avançar. Brand &amp; Growth, Digital Solutions, Business Development e Startup &amp; Innovation." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -22,194 +22,259 @@
         <a href="index.html">Home</a>
         <a href="sobre.html">Sobre Nós</a>
         <a href="servicos.html" aria-current="page">Serviços</a>
+        <a href="community.html">Community</a>
         <a href="recrutamento.html">Recrutamento</a>
         <a href="contacto.html">Contacto</a>
       </nav>
     </div>
   </header>
 
-  <main class="page-servicos">
-    <header class="page-hero sobre-hero">
-      <p class="sobre-hero__eyebrow">O que fazemos</p>
-      <h1 class="sobre-hero__title">Quatro áreas. Diferentes formas de avançar.</h1>
+  <main class="page-servicos page-editorial" id="servicos">
+    <header class="page-hero sobre-hero editorial-hero">
+      <p class="sobre-hero__eyebrow">O que fazemos / Serviços</p>
+      <h1 class="sobre-hero__title">Quatro áreas.<br /><span class="accent-dark">Uma forma de avançar.</span></h1>
       <p class="lead sobre-hero__lead">
-        Os projetos podem integrar competências de diferentes departamentos de acordo com as necessidades de cada organização.
+        Combinamos competências de marketing, tecnologia, investigação e inovação conforme o desafio. Não começamos por uma lista fechada de entregáveis: começamos por perceber o que cada organização precisa.
       </p>
       <span class="sobre-hero__rule" aria-hidden="true"></span>
     </header>
 
-    <section class="process" aria-labelledby="como-trabalhamos" data-process>
-      <div class="process__head">
-        <h2 id="como-trabalhamos">Como respondemos a um desafio</h2>
-        <p class="process__lead">Da primeira conversa à entrega.</p>
-      </div>
-
-      <ol class="process-timeline" aria-label="Fases do serviço">
-        <li class="process-step reveal" data-reveal-toggle>
-          <article class="process-card">
-            <h3 class="process-card__title">Ouvir</h3>
-            <p class="process-card__text">Percebemos o desafio, o contexto e a necessidade.</p>
-          </article>
-        </li>
-        <li class="process-step reveal" data-reveal-toggle>
-          <article class="process-card">
-            <h3 class="process-card__title">Definir</h3>
-            <p class="process-card__text">Organizamos objetivos, prioridades e expectativas.</p>
-          </article>
-        </li>
-        <li class="process-step reveal" data-reveal-toggle>
-          <article class="process-card">
-            <h3 class="process-card__title">Reunir</h3>
-            <p class="process-card__text">Selecionamos competências e departamentos.</p>
-          </article>
-        </li>
-        <li class="process-step reveal" data-reveal-toggle>
-          <article class="process-card">
-            <h3 class="process-card__title">Propor</h3>
-            <p class="process-card__text">Construímos abordagem, prazo, equipa e investimento.</p>
-          </article>
-        </li>
-        <li class="process-step reveal" data-reveal-toggle>
-          <article class="process-card">
-            <h3 class="process-card__title">Desenvolver</h3>
-            <p class="process-card__text">Executamos com acompanhamento e validação.</p>
-          </article>
-        </li>
-        <li class="process-step reveal" data-reveal-toggle>
-          <article class="process-card">
-            <h3 class="process-card__title">Validar</h3>
-            <p class="process-card__text">Revemos entregas e integramos feedback.</p>
-          </article>
-        </li>
-        <li class="process-step reveal" data-reveal-toggle>
-          <article class="process-card">
-            <h3 class="process-card__title">Entregar</h3>
-            <p class="process-card__text">Concluímos, avaliamos e definimos próximos passos.</p>
-          </article>
-        </li>
-      </ol>
-    </section>
-
-    <section class="servicos-areas" aria-label="Áreas de serviço">
-      <article class="servico-area reveal" id="digital">
-        <header class="servico-area__head">
-          <p class="servico-area__kicker">09 · Digital Solutions</p>
-          <h2 class="servico-area__title">Soluções digitais pensadas para funcionar.</h2>
-          <p class="servico-area__lead">Precisão, lógica e funcionalidade para transformar operações.</p>
-        </header>
-        <ul class="service-list">
-          <li>
-            <h3>Sistema ERP</h3>
-            <p>Desenvolvimento de um sistema integrado de gestão empresarial que centraliza clientes, faturação, stock, operações internas e análise de desempenho. Pode incluir recursos humanos, compras, relatórios avançados, dashboards, previsões inteligentes, aplicações móveis e integrações externas.</p>
-          </li>
-          <li>
-            <h3>Dashboard de Indicadores de Desempenho</h3>
-          </li>
-          <li>
-            <h3>Sistema CRM</h3>
-          </li>
-          <li>
-            <h3>Website Institucional</h3>
-          </li>
-          <li>
-            <h3>Automação de Processos</h3>
-          </li>
-          <li>
-            <h3>Loja Online</h3>
-          </li>
-        </ul>
+    <div class="servicos-v7">
+      <article class="service-panel always-visible reveal" id="brand-growth">
+        <div class="service-intro">
+          <div>
+            <span class="service-label">01 / BRAND &amp; GROWTH</span>
+            <h2>Da marca ao crescimento.</h2>
+            <p>Definimos a mensagem antes de escolher o canal. Desenvolvemos identidades, conteúdos e campanhas que ajudam organizações a comunicar com coerência e a construir relações com os seus públicos.</p>
+          </div>
+          <div class="service-stamp" aria-hidden="true">01<span>CO:RA<br />STUDIO</span></div>
+        </div>
+        <div class="service-items">
+          <div class="service-item">
+            <span>01</span>
+            <div>
+              <strong>Estratégia e presença digital</strong>
+              <p>Posicionamento, públicos, objetivos e canais adequados à marca.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>02</span>
+            <div>
+              <strong>Conteúdo para redes sociais</strong>
+              <p>Publicações, stories e vídeos curtos adaptados a cada plataforma.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>03</span>
+            <div>
+              <strong>Gestão de redes sociais</strong>
+              <p>Planeamento editorial, publicação, acompanhamento e otimização.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>04</span>
+            <div>
+              <strong>Publicidade digital</strong>
+              <p>Campanhas segmentadas, criativos e análise de desempenho.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>05</span>
+            <div>
+              <strong>Fotografia e vídeo promocional</strong>
+              <p>Produção visual para marcas, produtos e campanhas.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>06</span>
+            <div>
+              <strong>Materiais e ativações</strong>
+              <p>Peças gráficas, eventos e experiências de contacto com o público.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+        </div>
       </article>
 
-      <article class="servico-area reveal" id="brand">
-        <header class="servico-area__head">
-          <p class="servico-area__kicker">10 · Brand &amp; Growth</p>
-          <h2 class="servico-area__title">Identidade, conteúdo e presença.</h2>
-          <p class="servico-area__lead">Marca, posicionamento, mensagem, conteúdo, distribuição e crescimento.</p>
-        </header>
-        <ul class="service-list">
-          <li>
-            <h3>Stories para Redes Sociais</h3>
-            <p>Stories criativos e alinhados com a identidade da marca, pensados para gerar interação, proximidade e consistência. Inclui planeamento, adaptação a plataformas e séries de conteúdo.</p>
-          </li>
-          <li>
-            <h3>Publicações para Redes Sociais</h3>
-          </li>
-          <li>
-            <h3>Reels e Vídeos Curtos</h3>
-          </li>
-          <li>
-            <h3>Gestão de Redes Sociais</h3>
-          </li>
-          <li>
-            <h3>Criação e Otimização de Perfis Digitais</h3>
-          </li>
-          <li>
-            <h3>Publicidade Digital</h3>
-          </li>
-          <li>
-            <h3>Cartazes Publicitários</h3>
-          </li>
-          <li>
-            <h3>Sessão Fotográfica</h3>
-          </li>
-          <li>
-            <h3>Vídeos Promocionais</h3>
-          </li>
-          <li>
-            <h3>Eventos e Ativações de Marca</h3>
-          </li>
-        </ul>
+      <article class="service-panel always-visible reveal" id="digital-solutions">
+        <div class="service-intro">
+          <div>
+            <span class="service-label">02 / DIGITAL SOLUTIONS</span>
+            <h2>Tecnologia ao serviço de cada desafio.</h2>
+            <p>Criamos ferramentas digitais que organizam informação, simplificam operações e tornam os processos mais claros. Cada solução é pensada a partir do contexto e das necessidades de utilização.</p>
+          </div>
+          <div class="service-stamp" aria-hidden="true">02<span>CO:RA<br />STUDIO</span></div>
+        </div>
+        <div class="service-items">
+          <div class="service-item">
+            <span>01</span>
+            <div>
+              <strong>Sistemas ERP</strong>
+              <p>Centralização de operações, clientes, stock e informação de gestão.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>02</span>
+            <div>
+              <strong>Dashboards de indicadores</strong>
+              <p>Painéis de KPI para acompanhar desempenho e apoiar decisões.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>03</span>
+            <div>
+              <strong>Sistemas CRM</strong>
+              <p>Organização de contactos, oportunidades e acompanhamento comercial.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>04</span>
+            <div>
+              <strong>Websites institucionais</strong>
+              <p>Presença digital acessível e orientada para objetivos, com SEO e funcionalidades à medida.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>05</span>
+            <div>
+              <strong>Automação de processos</strong>
+              <p>Integração de ferramentas e redução de tarefas repetitivas.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>06</span>
+            <div>
+              <strong>Lojas online</strong>
+              <p>Experiências de venda digital com produtos, encomendas e pagamentos.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+        </div>
       </article>
 
-      <article class="servico-area reveal" id="business">
-        <header class="servico-area__head">
-          <p class="servico-area__kicker">11 · Business Development</p>
-          <h2 class="servico-area__title">Compreender antes de decidir.</h2>
-          <p class="servico-area__lead">Investigação, perguntas e dados para fundamentar cada decisão.</p>
-        </header>
-        <ul class="service-list">
-          <li>
-            <h3>Orientação Legal e Estrutural Inicial</h3>
-            <p>Apoio na compreensão de requisitos legais e estruturais para criar uma empresa ou startup, sem substituir aconselhamento jurídico formal. Inclui tipos de empresa, constituição, obrigações, propriedade intelectual, proteção de marca e encaminhamento especializado.</p>
-          </li>
-          <li>
-            <h3>Investigação de Utilizadores e Focus Groups</h3>
-          </li>
-          <li>
-            <h3>Testes com Consumidores e Feedback de Campo</h3>
-          </li>
-          <li>
-            <h3>Inquéritos e Identificação de Tendências</h3>
-          </li>
-        </ul>
+      <article class="service-panel always-visible reveal" id="business-development">
+        <div class="service-intro">
+          <div>
+            <span class="service-label">03 / BUSINESS DEVELOPMENT</span>
+            <h2>Compreender antes de decidir.</h2>
+            <p>Investigamos necessidades, comportamentos e oportunidades para ajudar organizações a fundamentar decisões e a testar soluções antes de avançarem.</p>
+          </div>
+          <div class="service-stamp" aria-hidden="true">03<span>CO:RA<br />STUDIO</span></div>
+        </div>
+        <div class="service-items">
+          <div class="service-item">
+            <span>01</span>
+            <div>
+              <strong>Investigação de utilizadores</strong>
+              <p>Entrevistas e focus groups para compreender necessidades e testar conceitos.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>02</span>
+            <div>
+              <strong>Testes no terreno</strong>
+              <p>Observação e contacto com consumidores em contexto real.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>03</span>
+            <div>
+              <strong>Inquéritos e tendências</strong>
+              <p>Questionários, recolha de feedback e identificação de padrões.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>04</span>
+            <div>
+              <strong>Orientação estrutural inicial</strong>
+              <p>Apoio ao enquadramento de decisões de arranque, sem substituir aconselhamento jurídico.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+        </div>
       </article>
 
-      <article class="servico-area reveal" id="startup">
-        <header class="servico-area__head">
-          <p class="servico-area__kicker">12 · Startup &amp; Innovation</p>
-          <h2 class="servico-area__title">Dar estrutura ao que ainda está a começar.</h2>
-          <p class="servico-area__lead">Hipóteses, decisões e iteração para fazer uma ideia avançar.</p>
-        </header>
-        <ul class="service-list">
-          <li>
-            <h3>Validação e Estruturação de Ideias</h3>
-            <p>Análise de ideias de negócio para avaliar coerência, potencial de mercado e viabilidade. Inclui proposta de valor, problema, solução, público-alvo e validação inicial.</p>
-          </li>
-          <li>
-            <h3>Definição de Conceito e Marca</h3>
-          </li>
-          <li>
-            <h3>Preparação de Pitch e Oportunidades</h3>
-          </li>
-          <li>
-            <h3>Integração no Ecossistema e Crescimento Inicial</h3>
-          </li>
-          <li>
-            <h3>Sessões de Ideação</h3>
-          </li>
-        </ul>
+      <article class="service-panel always-visible reveal" id="startup-innovation">
+        <div class="service-intro">
+          <div>
+            <span class="service-label">04 / STARTUP &amp; INNOVATION</span>
+            <h2>Dar estrutura ao início.</h2>
+            <p>Apoiamos ideias em construção, da definição do problema aos primeiros testes. Ajudamos a organizar hipóteses, clarificar propostas e preparar os passos seguintes.</p>
+          </div>
+          <div class="service-stamp" aria-hidden="true">04<span>CO:RA<br />STUDIO</span></div>
+        </div>
+        <div class="service-items">
+          <div class="service-item">
+            <span>01</span>
+            <div>
+              <strong>Validação de ideias</strong>
+              <p>Análise do problema, público, solução e proposta de valor.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>02</span>
+            <div>
+              <strong>Conceito e marca</strong>
+              <p>Nome, posicionamento, identidade e lógica de lançamento.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>03</span>
+            <div>
+              <strong>Pitch e apresentação</strong>
+              <p>Narrativa, materiais de apresentação e preparação com feedback.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>04</span>
+            <div>
+              <strong>Ecossistema e crescimento</strong>
+              <p>Orientação para programas, incubadoras, MVP e parcerias.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <div class="service-item">
+            <span>05</span>
+            <div>
+              <strong>Sessões de ideação</strong>
+              <p>Dinâmicas colaborativas para explorar e desenvolver soluções.</p>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+        </div>
       </article>
-    </section>
+
+      <section class="method reveal" aria-labelledby="method-heading">
+        <span class="service-label">O nosso método</span>
+        <h2 id="method-heading">Da conversa à entrega.</h2>
+        <div class="method-track">
+          <div><b>01</b><strong>Ouvir</strong><small>Compreender o contexto.</small></div>
+          <div><b>02</b><strong>Definir</strong><small>Alinhar objetivos e âmbito.</small></div>
+          <div><b>03</b><strong>Reunir</strong><small>Juntar as competências.</small></div>
+          <div><b>04</b><strong>Propor</strong><small>Apresentar plano e condições.</small></div>
+          <div><b>05</b><strong>Desenvolver</strong><small>Executar e acompanhar.</small></div>
+          <div><b>06</b><strong>Validar</strong><small>Rever e integrar feedback.</small></div>
+          <div><b>07</b><strong>Entregar</strong><small>Concluir e avaliar.</small></div>
+        </div>
+        <a class="btn editorial-btn" href="contacto.html">Vamos falar sobre o teu projeto ↗</a>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -228,6 +293,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="sobre.html">Sobre Nós</a></li>
           <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="community.html">Community</a></li>
           <li><a href="recrutamento.html">Recrutamento</a></li>
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
