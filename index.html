@@ -7,7 +7,7 @@
   <meta name="description" content="CO:RA — Marketing, estratégia, inovação e soluções digitais. Create Opportunities, Raise Ambitions." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -29,7 +29,7 @@
   </header>
 
   <main class="home-main" data-home id="conteudo-principal">
-    <section class="home-slogan" aria-label="Slogan">
+    <section class="home-hero" id="inicio" data-home-hero aria-label="Início">
       <canvas
         class="home-intro-canvas"
         data-home-intro-canvas
@@ -46,187 +46,102 @@
         fetchpriority="high"
         decoding="async"
       />
-      <div class="home-slogan__inner">
-        <p class="home-slogan__brand">CO:RA</p>
-        <h1 class="home-slogan__title">
-          <span class="home-slogan__word">Vision</span>
-          <span class="home-slogan__word">meets</span>
-          <span class="home-slogan__word home-slogan__word--accent">reality</span>
-        </h1>
-        <p class="home-slogan__lead">Marketing, estratégia, inovação e soluções digitais.</p>
-      </div>
-    </section>
-
-    <section class="home-team-cta" data-team-slider aria-label="Fotografias da equipa CO:RA">
-      <div class="home-team-cta__viewport">
-        <div class="home-team-cta__track" data-team-track>
-          <div class="home-team-cta__slide home-team-cta__slide--pos-equipa" style="background-image: url('equipa.jpeg');" role="img" aria-label="Equipa CO:RA"></div>
-          <div class="home-team-cta__slide home-team-cta__slide--pos-nudge" style="background-image: url('Departamentos.jpeg');" role="img" aria-label="Chefes de departamento"></div>
-          <div class="home-team-cta__slide" style="background-image: url('Direção.jpeg');" role="img" aria-label="Direção"></div>
-        </div>
-      </div>
-      <div class="home-team-cta__scrim"></div>
-      <div class="home-team-cta__content">
-        <h2 id="associa-heading" class="visually-hidden">Associa-te</h2>
-        <a href="recrutamento.html" class="btn btn-associate">
-          <span class="btn-associate__text">Associa-te</span>
-          <span class="btn-associate__shine" aria-hidden="true"></span>
-        </a>
-      </div>
-    </section>
-
-    <section class="home-triple" aria-label="Método e diferenciação">
-      <div class="home-triple__grid">
-        <div class="home-triple__col home-triple__col--left reveal">
-          <h2 class="home-triple__heading">A ideia CO:RA</h2>
-          <p class="home-triple__text home-triple__text--lead">Uma ideia, por si só, não muda nada.</p>
-          <p class="home-triple__text">O que faz a diferença é desenvolvê-la, testá-la, estruturá-la e transformá-la em algo real. É o espaço entre pensar e fazer que nos interessa.</p>
-          <ul class="home-diff">
-            <li>
-              <span class="home-diff__dot"></span>
-              Pensar
-            </li>
-            <li>
-              <span class="home-diff__dot"></span>
-              Testar
-            </li>
-            <li>
-              <span class="home-diff__dot"></span>
-              Construir
-            </li>
-            <li>
-              <span class="home-diff__dot"></span>
-              Concretizar
-            </li>
-          </ul>
-        </div>
-        <div class="home-triple__col home-triple__col--right reveal">
-          <h2 class="home-triple__heading">Uma nova perspetiva</h2>
-          <p class="home-triple__text home-triple__text--lead">Estamos a entrar no mercado num momento em que o próprio mercado está a mudar.</p>
-          <p class="home-triple__text">Trazemos proximidade a novas ferramentas, linguagens e comportamentos. A diferença não é saber mais — é ver com outros olhos e equilibrar essa perspetiva com estrutura, supervisão e aprendizagem contínua.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-trust" aria-labelledby="home-trust-heading">
-      <div class="home-band">
-        <p class="kicker">Create Opportunities : Raise Ambitions</p>
-        <h2 id="home-trust-heading" class="home-band__title">Quem somos</h2>
-        <p class="home-band__lead">
-          A CO:RA é uma associação sem fins lucrativos, constituída e gerida por estudantes, que desenvolve projetos e presta serviços a entidades externas.
-          Como consultora de marketing multidisciplinar, reúne marketing, desenvolvimento de negócio, inovação e soluções digitais.
-        </p>
-        <ul class="home-trust__list">
-          <li class="home-trust__item reveal">
-            <p class="home-trust__label">Sede</p>
-            <h3 class="home-trust__name">Universidade Católica Portuguesa</h3>
-            <p class="home-trust__text">
-              Sede e enquadramento operacional no Centro Regional do Porto da <a href="https://www.ucp.pt" target="_blank" rel="noopener noreferrer">Universidade Católica Portuguesa</a>.
-            </p>
-          </li>
-          <li class="home-trust__item reveal">
-            <p class="home-trust__label">Movimento Júnior</p>
-            <h3 class="home-trust__name">Aprender pela prática</h3>
-            <p class="home-trust__text">
-              O Movimento Júnior reúne associações académicas sem fins lucrativos, geridas por estudantes, que ligam desenvolvimento de competências, empreendedorismo, inovação e projetos para entidades externas.
-            </p>
-          </li>
-          <li class="home-trust__item reveal">
-            <p class="home-trust__label">O que fazemos</p>
-            <h3 class="home-trust__name">Quatro áreas</h3>
-            <p class="home-trust__text">
-              Digital Solutions, Brand &amp; Growth, Business Development e Startup &amp; Innovation.
-              Os projetos podem integrar competências de diferentes departamentos de acordo com as necessidades de cada organização.
-            </p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="home-faq" id="faq" aria-labelledby="home-faq-heading">
-      <div class="home-band">
-        <p class="kicker">Dúvidas</p>
-        <h2 id="home-faq-heading" class="home-band__title">Perguntas frequentes</h2>
-        <div class="home-faq__groups">
-          <div class="home-faq__group" id="faq-organizacoes">
-            <h3 class="home-faq__audience">Para organizações</h3>
-            <div class="faq-list">
-              <details class="faq-item">
-                <summary>O que é uma junior iniciativa?</summary>
-                <p>É uma organização gerida por estudantes que presta serviços a entidades externas. Na CO:RA, cada projeto tem dois fins: uma entrega útil para quem contrata e formação prática para a equipa.</p>
-              </details>
-              <details class="faq-item">
-                <summary>Quem faz o trabalho e quem o valida?</summary>
-                <p>A equipa do departamento executa. O chefe de departamento supervisiona. A direção valida antes da entrega ao cliente.</p>
-              </details>
-              <details class="faq-item">
-                <summary>Como se chega a um âmbito e a um orçamento?</summary>
-                <p>Começa numa reunião. Levantamos o que precisas, o departamento propõe um plano e uma estimativa, e só avançamos depois de alinharmos. Não há uma tabela de preços: o âmbito segue o pedido.</p>
-              </details>
-              <details class="faq-item">
-                <summary>Quanto tempo demora um projeto?</summary>
-                <p>Depende do que estiver em causa. O calendário fica escrito na proposta, com pontos de validação. Não há um prazo único para todos os trabalhos.</p>
-              </details>
-              <details class="faq-item">
-                <summary>Já há casos de projeto no site?</summary>
-                <p>Ainda não. Um caso entra no site quando a entrega estiver concluída e houver acordo para a mostrar. Até lá, a primeira reunião serve para veres o método, a equipa e se o teu desafio encaixa.</p>
-              </details>
-              <details class="faq-item">
-                <summary>Como começo?</summary>
-                <p>Agenda uma reunião de 60 minutos. Nessa conversa percebemos o desafio e dizemos se faz sentido avançar.</p>
-              </details>
-            </div>
+      <div class="hero-layout" data-home-hero-content>
+        <div class="hero-copy">
+          <span class="home-eyebrow">PORTO STUDENTS’ DIGITAL INNOVATION · 2026</span>
+          <h1>VISION<br />MEETS <em>REALITY.</em></h1>
+          <p class="hero-deck">Ideias que encontram pessoas. Perspetivas que se tornam projetos. Trabalho que cria valor.</p>
+          <div class="hero-meaning">
+            <span class="hero-meaning-label">O SIGNIFICADO DE CO:RA</span>
+            <strong>Create Opportunities, Raise Ambitions.</strong>
+            <p>Criar oportunidades é abrir espaço a novas ideias, experiências e ligações. Elevar ambições é dar-lhes direção, exigência e condições para crescer. É este o compromisso que orienta a CO:RA e a forma como aproximamos talento universitário de desafios reais.</p>
           </div>
-          <div class="home-faq__group" id="faq-estudantes">
-            <h3 class="home-faq__audience">Para estudantes</h3>
-            <div class="faq-list">
-              <details class="faq-item">
-                <summary>Quem se pode candidatar?</summary>
-                <p>Estudantes da Universidade Católica Portuguesa. A conversa de entrada serve para perceber o teu percurso e em que departamento faz sentido entrares.</p>
-              </details>
-              <details class="faq-item">
-                <summary>Preciso de experiência?</summary>
-                <p>Não. Procuramos vontade de aprender e de trabalhar com método. A supervisão existe para quem está a começar.</p>
-              </details>
-              <details class="faq-item">
-                <summary>Em que área entro?</summary>
-                <p>Há quatro departamentos de projeto: Digital Solutions, Brand &amp; Growth, Business Development e Startup &amp; Innovation. Na candidatura alinhamos o teu perfil com uma equipa.</p>
-              </details>
-              <details class="faq-item">
-                <summary>O que ganho?</summary>
-                <p>Prática em problemas de organizações reais, trabalho com pessoas de áreas diferentes, e um percurso acompanhado por um chefe de departamento e pela direção.</p>
-              </details>
-              <details class="faq-item">
-                <summary>Qual é o compromisso?</summary>
-                <p>O ritmo combina-se na conversa de entrada. O que pedimos é presença nas entregas da tua equipa e respeito pelos prazos que ficarem combinados.</p>
-              </details>
-              <details class="faq-item">
-                <summary>Como me candidato?</summary>
-                <p>Não há um formulário à parte. A candidatura começa numa conversa de 60 minutos. Vês os departamentos e marcas a reunião.</p>
-              </details>
-            </div>
+          <div class="hero-actions">
+            <a class="btn home-btn" href="servicos.html">Descobrir o que fazemos ↗</a>
+          </div>
+          <div class="hero-bottom">
+            <span>DA IDEIA À CONCRETIZAÇÃO.</span>
+            <span>DESLIZA PARA DESCOBRIR ↓</span>
           </div>
         </div>
+        <div class="hero-video">
+          <div class="video-index">01 / APRESENTAÇÃO INSTITUCIONAL</div>
+          <div class="video-placeholder">
+            <div class="video-play" aria-hidden="true">▶</div>
+            <strong>A nossa história,<br />em movimento.</strong>
+            <small>Espaço reservado ao vídeo oficial da CO:RA</small>
+          </div>
+          <div class="video-foot">VÍDEO INSTITUCIONAL <span>↗ EM BREVE</span></div>
+        </div>
       </div>
     </section>
 
-    <section class="home-paths" aria-labelledby="home-paths-heading">
-      <div class="home-band">
-        <p class="kicker">Decisão</p>
-        <h2 id="home-paths-heading" class="home-band__title">O próximo passo</h2>
-        <div class="home-paths__grid">
-          <article class="home-path">
-            <p class="home-path__who">Organizações</p>
-            <h3 class="home-path__title">Tens um desafio</h3>
-            <p class="home-path__text">Conta-nos o que precisas. A primeira reunião serve para perceber se a CO:RA é a equipa certa.</p>
-            <a class="btn" href="contacto.html">Agendar reunião</a>
+    <section class="home-intro section-block reveal" aria-labelledby="home-intro-heading">
+      <div class="home-container intro-editorial">
+        <div>
+          <span class="home-eyebrow home-eyebrow--dark">01 / O NOSSO PONTO DE PARTIDA</span>
+          <h2 id="home-intro-heading">Onde as ideias<br /><span class="accent-dark">ganham forma.</span></h2>
+        </div>
+        <div>
+          <p class="intro-quote">A CO:RA é onde novas perspetivas ganham estrutura e se transformam em soluções concretas. Cruzamos conhecimento, criatividade e ambição para desenvolver projetos com relevância nas áreas de marketing, inovação, negócio e soluções digitais, aproximando estudantes de contextos reais e criando valor através de uma abordagem multidisciplinar.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-paths-v7 section-block" aria-label="Descobrir a CO:RA">
+      <div class="home-container">
+        <div class="home-section-top reveal">
+          <span class="home-eyebrow home-eyebrow--dark">02 / ENCONTRA O TEU PONTO DE PARTIDA</span>
+          <p>Para organizações, estudantes e quem procura transformar ideias em trabalho concreto.</p>
+        </div>
+        <div class="path-grid">
+          <article class="path-card reveal">
+            <span>01 / ORGANIZAÇÕES</span>
+            <h3>Tenho um desafio.<br />Procuro soluções.</h3>
+            <p>Marketing, tecnologia, investigação e inovação, com equipas organizadas em torno de cada necessidade.</p>
+            <a class="path-card__link" href="contacto.html">Agendar reunião <b>↗</b></a>
           </article>
-          <article class="home-path home-path--invert">
-            <p class="home-path__who">Estudantes</p>
-            <h3 class="home-path__title">Queres entrar</h3>
-            <p class="home-path__text">Entra num departamento, trabalha com método e aprende em problemas reais, com supervisão.</p>
-            <a class="btn home-path__btn" href="recrutamento.html">Candidata-te</a>
+          <article class="path-card path-accent reveal">
+            <span>02 / EMPRESAS &amp; TALENTO</span>
+            <h3>Quero descobrir<br />novos perfis.</h3>
+            <p>Conhece a vertente empresarial da Community e o futuro Talent Portal, pensado para parceiros autorizados.</p>
+            <a class="path-card__link" href="contacto.html">Falar connosco <b>↗</b></a>
           </article>
+          <article class="path-card reveal">
+            <span>03 / ESTUDANTES</span>
+            <h3>Quero fazer<br />parte.</h3>
+            <p>Experiências, iniciativas, desenvolvimento e oportunidades para além da sala de aula.</p>
+            <a class="path-card__link" href="recrutamento.html">Candidata-te <b>↗</b></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-expertise section-block" aria-labelledby="home-expertise-heading">
+      <div class="home-container">
+        <div class="home-section-top reveal">
+          <span class="home-eyebrow home-eyebrow--dark">03 / QUATRO ÁREAS, UMA EQUIPA</span>
+        </div>
+        <h2 id="home-expertise-heading" class="reveal">Do conceito<br />à concretização<span class="accent-dark">.</span></h2>
+        <div class="expertise-list">
+          <a class="reveal" href="servicos.html#brand"><span>01</span><strong>Brand &amp; Growth</strong><small>Marca, marketing, comunicação e crescimento</small><b>↗</b></a>
+          <a class="reveal" href="servicos.html#digital"><span>02</span><strong>Digital Solutions</strong><small>Websites, sistemas, dados e automação</small><b>↗</b></a>
+          <a class="reveal" href="servicos.html#business"><span>03</span><strong>Business Development</strong><small>Investigação, mercado e oportunidades</small><b>↗</b></a>
+          <a class="reveal" href="servicos.html#startup"><span>04</span><strong>Startup &amp; Innovation</strong><small>Validação, lançamento e novas ideias</small><b>↗</b></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-join section-block" aria-labelledby="home-join-heading">
+      <div class="home-container home-join-inner">
+        <div class="reveal">
+          <span class="home-eyebrow">04 / CO:RA COMMUNITY</span>
+          <h2 id="home-join-heading">O talento cresce<br />em comunidade<span>.</span></h2>
+          <p>Experiências e desenvolvimento para estudantes. Ligações a talento emergente para organizações. Duas formas de participar num ecossistema que aproxima a universidade do mercado.</p>
+        </div>
+        <div class="join-options reveal">
+          <a href="recrutamento.html">Conhecer a CO:RA Community <b>↗</b></a>
+          <a href="contacto.html">Falar com a CO:RA <b>↗</b></a>
         </div>
       </div>
     </section>

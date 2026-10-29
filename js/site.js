@@ -9,6 +9,7 @@
   }
 
   var home = document.querySelector("[data-home]");
+  var homeHero = home ? home.querySelector("[data-home-hero]") : null;
   var introCanvas = home ? home.querySelector("[data-home-intro-canvas]") : null;
   var processTimeline = document.querySelector("[data-process] .process-timeline");
   var processSteps = processTimeline
@@ -17,6 +18,14 @@
   var revealEls = document.querySelectorAll("[data-home] .reveal, main.page-sobre .reveal, main.page-servicos .reveal, main.page-recrutamento .reveal");
   var teamSlider = document.querySelector("[data-team-slider]");
   var teamTrack = teamSlider ? teamSlider.querySelector("[data-team-track]") : null;
+
+  var markHomeHeroReady = function () {
+    if (!homeHero) return;
+    window.setTimeout(function () {
+      homeHero.classList.add("home-hero--ready");
+      document.body.classList.add("home-hero-ready");
+    }, 420);
+  };
 
   var isContactPage =
     document.querySelector("main.page-contacto") ||
@@ -53,6 +62,10 @@
     revealEls.forEach(function (el) {
       el.classList.add("is-visible");
     });
+    if (homeHero) {
+      homeHero.classList.add("home-hero--ready");
+      document.body.classList.add("home-hero-ready");
+    }
     if (processTimeline) processTimeline.style.setProperty("--process-progress", "1");
     if (processSteps && processSteps.length) {
       processSteps.forEach(function (el) {
@@ -375,6 +388,7 @@
       } catch (e2) {
         /* ignore */
       }
+      markHomeHeroReady();
     };
 
     var render = function (now) {
@@ -477,6 +491,7 @@
       raf = 0;
       ctx && ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
       canvas.style.visibility = "hidden";
+      markHomeHeroReady();
     };
 
     setSize();
@@ -511,7 +526,11 @@
     window.addEventListener("pagehide", stop, { once: true });
   };
 
-  if (introCanvas) runHomeIntroPixels(introCanvas);
+  if (introCanvas) {
+    runHomeIntroPixels(introCanvas);
+  } else {
+    markHomeHeroReady();
+  }
 
   if (revealEls.length) {
     var io = new IntersectionObserver(
