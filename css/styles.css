@@ -533,7 +533,7 @@ main.page-recrutamento {
 
 .home-slogan__title {
   margin: 0;
-  font-family: var(--font-home-display);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(2.85rem, 13.5vw, 10rem);
   line-height: 0.93;
