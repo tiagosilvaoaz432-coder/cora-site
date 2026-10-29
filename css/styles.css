@@ -1094,6 +1094,34 @@ main.page-recrutamento {
   transition-delay: 0.26s;
 }
 
+/* Intro já visto nesta sessão: estado final, sem animação */
+html.home-intro-seen .home-slogan__brand,
+html.home-intro-seen .home-slogan__word,
+html.home-intro-seen .home-slogan__lead,
+html.home-intro-seen .home-slogan__word--accent::after,
+html.home-intro-seen .home-slogan__inner,
+html.home-intro-seen .home-intro-canvas,
+html.home-intro-seen .home-intro-logo {
+  animation: none !important;
+}
+
+html.home-intro-seen .home-slogan__brand,
+html.home-intro-seen .home-slogan__word,
+html.home-intro-seen .home-slogan__lead {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+html.home-intro-seen .home-slogan__word--accent::after {
+  transform: scaleX(1);
+}
+
+html.home-intro-seen .home-intro-canvas,
+html.home-intro-seen .home-intro-logo {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .home-slogan__brand,
   .home-slogan__word,

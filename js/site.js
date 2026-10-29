@@ -520,8 +520,19 @@
     window.addEventListener("pagehide", stop, { once: true });
   };
 
-  if (introCanvas) {
+  var introAlreadySeen = false;
+  try {
+    introAlreadySeen = sessionStorage.getItem("cora-home-intro-seen") === "1";
+  } catch (e) {}
+
+  if (introCanvas && !introAlreadySeen && !document.documentElement.classList.contains("home-intro-seen")) {
+    try {
+      sessionStorage.setItem("cora-home-intro-seen", "1");
+    } catch (e) {}
     runHomeIntroPixels(introCanvas);
+  } else if (home && introAlreadySeen) {
+    document.documentElement.classList.add("home-intro-seen");
+    home.style.setProperty("--home-slogan-after-intro", "0s");
   }
 
   if (revealEls.length) {
