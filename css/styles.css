@@ -398,8 +398,7 @@ main.page-recrutamento {
   }
 }
 
-.home-slogan,
-.home-hero {
+.home-slogan {
   min-height: calc(100vh - 4.8rem);
   min-height: calc(100svh - 4.8rem);
   display: flex;
@@ -411,31 +410,6 @@ main.page-recrutamento {
   isolation: isolate;
   background: #ffffff;
   color: var(--black);
-  transition: background 0.7s var(--ease-out);
-}
-
-.home-hero.home-hero--ready {
-  min-height: 0;
-  height: 0;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition:
-    opacity 0.55s var(--ease-out),
-    visibility 0s linear 0.55s,
-    min-height 0.7s var(--ease-out) 0.12s,
-    height 0.7s var(--ease-out) 0.12s,
-    padding 0.7s var(--ease-out) 0.12s;
-}
-
-body.home-hero-ready .site-header:not(.header--scrolled) {
-  background: rgba(255, 254, 253, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom-color: rgba(0, 0, 0, 0.08);
 }
 
 .home-intro-canvas {
@@ -3497,20 +3471,6 @@ body.sticky-cta-active {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .home-hero,
-  .home-hero.home-hero--ready {
-    min-height: 0;
-    height: 0;
-    padding: 0;
-    margin: 0;
-    opacity: 0;
-    visibility: hidden;
-    overflow: hidden;
-    pointer-events: none;
-    transition: none;
-  }
-}
 
 /* —— Páginas editoriais (textos portefólio v7) —— */
 .page-editorial {
