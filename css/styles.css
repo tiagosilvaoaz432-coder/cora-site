@@ -2959,11 +2959,16 @@ select {
     color: var(--black);
   }
 
+  /* Overlay abaixo do header: o menu vive dentro de .site-header (z-index 100). */
+  body.nav-open .site-header {
+    z-index: 120;
+  }
+
   body.nav-open::before {
     content: "";
     position: fixed;
     inset: 0;
-    z-index: 105;
+    z-index: 110;
     background: rgba(0, 0, 0, 0.38);
   }
 

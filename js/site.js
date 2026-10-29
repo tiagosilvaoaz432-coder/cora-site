@@ -23,12 +23,6 @@
       setNavOpen(navToggle.getAttribute("aria-expanded") !== "true");
     });
 
-    navMain.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        setNavOpen(false);
-      });
-    });
-
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") setNavOpen(false);
     });
