@@ -1094,34 +1094,6 @@ main.page-recrutamento {
   transition-delay: 0.26s;
 }
 
-/* Intro já visto nesta sessão: estado final, sem animação */
-html.home-intro-seen .home-slogan__brand,
-html.home-intro-seen .home-slogan__word,
-html.home-intro-seen .home-slogan__lead,
-html.home-intro-seen .home-slogan__word--accent::after,
-html.home-intro-seen .home-slogan__inner,
-html.home-intro-seen .home-intro-canvas,
-html.home-intro-seen .home-intro-logo {
-  animation: none !important;
-}
-
-html.home-intro-seen .home-slogan__brand,
-html.home-intro-seen .home-slogan__word,
-html.home-intro-seen .home-slogan__lead {
-  opacity: 1;
-  transform: none;
-  filter: none;
-}
-
-html.home-intro-seen .home-slogan__word--accent::after {
-  transform: scaleX(1);
-}
-
-html.home-intro-seen .home-intro-canvas,
-html.home-intro-seen .home-intro-logo {
-  display: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .home-slogan__brand,
   .home-slogan__word,
@@ -3169,14 +3141,9 @@ select {
     font-size: clamp(1.85rem, 9vw, 2.75rem);
   }
 
-  .page-community .app-strip {
-    padding: 1.25rem;
-    gap: 1.5rem;
-  }
-
-  .page-community .app-mock {
-    transform: none;
-    box-shadow: 8px 10px 0 #edc7ba;
+  .page-community .app-soon-card {
+    padding: 1.5rem 1.25rem;
+    max-width: none;
   }
 
   .page-community .benefit-card {
@@ -4584,63 +4551,29 @@ select {
   max-width: none;
 }
 
-.page-community .app-strip {
+.page-community .app-soon-card {
   background: #ffe8e0;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 50px;
-  padding: 48px;
-  align-items: center;
+  border: 1px solid #e3c8be;
+  padding: 40px 36px;
+  max-width: 420px;
 }
 
-.page-community .app-strip h3 {
+.page-community .app-soon-card h3 {
   font-family: var(--font-home-display);
   font-weight: 400;
-  font-size: clamp(30px, 3.2vw, 46px);
+  font-size: clamp(28px, 3vw, 40px);
   letter-spacing: -0.04em;
   line-height: 1.08;
-  margin: 10px 0 14px;
+  margin: 10px 0 12px;
   color: #090909;
 }
 
-.page-community .app-strip p {
-  color: #444;
-  max-width: none;
+.page-community .app-soon-card p {
+  color: #555;
   margin: 0;
-  line-height: 1.6;
-}
-
-.page-community .app-mock {
-  background: white;
-  border: 1px solid #e3c8be;
-  padding: 25px;
-  transform: rotate(2deg);
-  box-shadow: 15px 18px 0 #edc7ba;
-  font-family: var(--font-home);
-}
-
-.page-community .app-top {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 900;
-}
-
-.page-community .app-top span {
-  font-size: 11px;
-}
-
-.page-community .app-greet {
-  font: 24px/1.15 var(--font-home-display);
-  padding: 30px 0;
-  letter-spacing: -0.03em;
-}
-
-.page-community .app-row {
-  border-top: 1px solid #ddd;
-  padding: 12px 0;
-  display: flex;
-  justify-content: space-between;
-  font-weight: 600;
+  line-height: 1.55;
+  font-size: 15px;
+  max-width: none;
 }
 
 .page-community .community-note {
@@ -4682,10 +4615,6 @@ select {
   .page-community .benefit-grid {
     grid-template-columns: 1fr 1fr;
   }
-
-  .page-community .app-strip {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 800px) {
@@ -4699,10 +4628,6 @@ select {
 
   .page-community .community-number {
     display: none;
-  }
-
-  .page-community .app-strip {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -4755,8 +4680,8 @@ select {
     padding: 20px 0 40px;
   }
 
-  .page-community .app-strip {
-    padding: 24px;
+  .page-community .app-soon-card {
+    padding: 24px 20px;
   }
 }
 
