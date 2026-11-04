@@ -319,9 +319,17 @@ main.page-recrutamento {
   margin: 0;
   padding: 0;
   flex: 1;
-  /* Quando o intro em JS não corre; o script define o valor exacto (canvas + saída do logo) */
-  /* intro + 0.7s pausa (ver sloganGapMs em site.js) */
-  --home-slogan-after-intro: 4.73s;
+  /* Fallback; o JS define o valor exacto (gather + hold + split) */
+  --home-slogan-after-intro: 3.35s;
+}
+
+/* Segunda visita na mesma sessão: sem gate, slogan quase imediato */
+html.home-intro-seen .home-main {
+  --home-slogan-after-intro: 0.12s;
+}
+
+html.home-intro-seen .home-intro-gate {
+  display: none;
 }
 
 .page-hero {
@@ -412,49 +420,6 @@ main.page-recrutamento {
   }
 }
 
-@keyframes logo-first-in-out {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.9);
-    filter: blur(2px);
-  }
-  16% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    filter: blur(0);
-  }
-  70% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    filter: blur(0);
-  }
-  /* Arranque abrupto + aproximação rápida ao ecrã com fade */
-  71% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(3.2);
-    filter: blur(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(22);
-    filter: blur(8px);
-  }
-}
-
-/* Zoom + fade + blur; bezier ease-in muito forte (próximo do t¹¹ em site.js); duração = LOGO_EXIT_MS */
-@keyframes logo-intro-exit-only {
-  from {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.16)) blur(0);
-  }
-  to {
-    opacity: 0;
-    transform: translate(calc(-50% - min(23vw, 16rem)), calc(-50% - min(31vh, 21.5rem))) scale(22);
-    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.16)) blur(8px);
-  }
-}
-
 @keyframes shine-sweep {
   from {
     transform: translateX(-120%) skewX(-12deg);
@@ -478,38 +443,87 @@ main.page-recrutamento {
   color: var(--black);
 }
 
+/* Gate: ecrã branco com logo; abre ao meio e revela o slogan por baixo */
+.home-intro-gate {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.home-intro-gate__panel {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  background: #ffffff;
+  will-change: transform;
+  transition: transform 1.15s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.home-intro-gate__panel--top {
+  top: 0;
+}
+
+.home-intro-gate__panel--bottom {
+  bottom: 0;
+}
+
+.home-intro-gate__logo {
+  position: absolute;
+  left: 50%;
+  width: clamp(12rem, 78vw, 52rem);
+  aspect-ratio: 377 / 150;
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.16));
+  transition: opacity 0.28s ease;
+}
+
+/* Cada metade mostra a parte correspondente do logo (alinham no centro do ecrã) */
+.home-intro-gate__panel--top .home-intro-gate__logo {
+  top: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.home-intro-gate__panel--bottom .home-intro-gate__logo {
+  top: 0;
+  transform: translate(-50%, -50%);
+}
+
+.home-intro-gate.is-logo-ready .home-intro-gate__logo {
+  opacity: 1;
+}
+
+.home-intro-gate.is-opening .home-intro-gate__panel--top {
+  transform: translateY(-100%);
+}
+
+.home-intro-gate.is-opening .home-intro-gate__panel--bottom {
+  transform: translateY(100%);
+}
+
+.home-intro-gate.is-done {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .home-intro-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 3;
+  z-index: 2;
   pointer-events: none;
+  transition: opacity 0.28s ease;
 }
 
-.home-intro-logo {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: clamp(12rem, 78vw, 52rem);
-  /* Lockup do Logótipo svg.svg. O canvas mede a tinta e usa o enquadramento real. */
-  aspect-ratio: 377 / 150;
-  height: auto;
-  object-fit: contain;
-  transform: translate(-50%, -50%);
-  transform-origin: center center;
+.home-intro-gate.is-logo-ready .home-intro-canvas {
   opacity: 0;
-  visibility: hidden;
-  z-index: 4;
-  pointer-events: none;
-  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.16));
-}
-
-.home-intro-logo.home-intro-logo--exit {
-  visibility: visible;
-  will-change: transform, opacity, filter;
-  /* both: primeiro keyframe aplica já no 1.º frame (evita um instante com opacity: 0 da classe base). */
-  animation: logo-intro-exit-only 2s cubic-bezier(0.985, 0.01, 1, 0.015) both;
 }
 
 .home-slogan__inner {
@@ -1100,8 +1114,7 @@ main.page-recrutamento {
   .home-slogan__lead,
   .home-slogan__word--accent::after,
   .home-slogan__inner,
-  .home-intro-canvas,
-  .home-intro-logo {
+  .home-intro-canvas {
     animation: none !important;
   }
 
@@ -1117,12 +1130,13 @@ main.page-recrutamento {
     transform: scaleX(1);
   }
 
+  .home-intro-gate,
   .home-intro-canvas {
-    display: none;
+    display: none !important;
   }
 
-  .home-intro-logo {
-    display: none;
+  .home-intro-gate__panel {
+    transition: none !important;
   }
 
   .home-team-cta__track {

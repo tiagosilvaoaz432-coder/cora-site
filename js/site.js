@@ -43,6 +43,7 @@
   }
 
   var home = document.querySelector("[data-home]");
+  var introGate = home ? home.querySelector("[data-home-intro-gate]") : null;
   var introCanvas = home ? home.querySelector("[data-home-intro-canvas]") : null;
   var processTimeline = document.querySelector("[data-process] .process-timeline");
   var processSteps = processTimeline
@@ -55,6 +56,25 @@
   var teamTrack = teamSlider ? teamSlider.querySelector("[data-team-track]") : null;
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var markHomeIntroSeen = function () {
+    try {
+      sessionStorage.setItem("cora-home-intro-seen", "1");
+    } catch (e) {
+      /* ignore */
+    }
+    document.documentElement.classList.add("home-intro-seen");
+  };
+
+  var homeIntroAlreadySeen = false;
+  try {
+    homeIntroAlreadySeen = sessionStorage.getItem("cora-home-intro-seen") === "1";
+  } catch (e) {
+    homeIntroAlreadySeen = document.documentElement.classList.contains("home-intro-seen");
+  }
+  if (homeIntroAlreadySeen) {
+    document.documentElement.classList.add("home-intro-seen");
+  }
 
   var servicosIndex = document.querySelector("main.page-servicos .servicos-index");
   if (servicosIndex) {
@@ -86,6 +106,7 @@
   }
 
   if (reduced) {
+    markHomeIntroSeen();
     revealEls.forEach(function (el) {
       el.classList.add("is-visible");
     });
@@ -98,8 +119,8 @@
     return;
   }
 
-  var runHomeIntroPixels = function (canvas) {
-    if (!canvas || !canvas.getContext) return;
+  var runHomeIntroPixels = function (canvas, gate) {
+    if (!canvas || !canvas.getContext || !gate) return;
     var ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
@@ -109,6 +130,7 @@
     var raf = 0;
     var startedAt = 0;
     var sequenceEnded = false;
+    var splitStarted = false;
 
     var config = {
       logoSrc: "Logótipo svg.svg",
@@ -117,22 +139,20 @@
       sampleStep: 4,
       particleSize: 2.1,
       gatherMs: 1750,
-      holdMs: 0,
+      holdMs: 420,
       crossfadeMs: 280,
+      /* Igual à transition CSS das metades do gate */
+      splitMs: 1150,
       maxParticles: 4200,
-      /* Fundo claro não entra nos pontos nem no bitmap final. */
       inkThreshold: 232,
-      /* O SVG é rasterizado a este tamanho para a aproximação não ficar suave. */
       rasterSize: 4096,
     };
 
-    /* Igual à duração em CSS: .home-intro-logo.home-intro-logo--exit */
-    var LOGO_EXIT_MS = 2000;
     if (home) {
       var introEndMs =
-        config.gatherMs + config.holdMs + config.crossfadeMs + LOGO_EXIT_MS;
-      /* Pausa após o logo antes da entrada do slogan (CSS .home-slogan__word). */
-      var sloganGapMs = 700;
+        config.gatherMs + config.holdMs + config.crossfadeMs;
+      /* Slogan começa a entrar quando o ecrã abre */
+      var sloganGapMs = 120;
       home.style.setProperty(
         "--home-slogan-after-intro",
         (introEndMs + sloganGapMs) / 1000 + "s"
@@ -155,16 +175,6 @@
     var easeOutCubic = function (t) {
       t = clamp01(t);
       return 1 - Math.pow(1 - t, 3);
-    };
-
-    var easeInCubic = function (t) {
-      t = clamp01(t);
-      return t * t * t;
-    };
-
-    var easeInPow4 = function (t) {
-      t = clamp01(t);
-      return Math.pow(t, 4);
     };
 
     var easeInOutCubic = function (t) {
@@ -263,7 +273,6 @@
       };
     };
 
-    /* O browser rasteriza o SVG ao tamanho indicado. Sem isto, o zoom amplia um bitmap pequeno. */
     var loadSharpSvg = function (onReady, onFail) {
       fetch(config.logoSrc)
         .then(function (res) {
@@ -393,26 +402,56 @@
 
     var tCrossfadeStart = config.gatherMs + config.holdMs;
     var tCrossfadeEnd = tCrossfadeStart + config.crossfadeMs;
-    var tExitStart = tCrossfadeEnd;
-    var tExitEnd = tExitStart + LOGO_EXIT_MS;
 
-    var finishCanvasIntro = function () {
-      if (sequenceEnded) return;
-      sequenceEnded = true;
-      if (raf) window.cancelAnimationFrame(raf);
-      raf = 0;
-      try {
-        ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
-      } catch (e) {
-        /* ignore */
-      }
-      canvas.style.visibility = "hidden";
+    var finishGate = function () {
+      gate.classList.add("is-done");
+      markHomeIntroSeen();
       try {
         canvas.width = 0;
         canvas.height = 0;
       } catch (e2) {
         /* ignore */
       }
+    };
+
+    var syncPanelLogos = function () {
+      if (!logoBitmap || !logoBitmap.canvas) return;
+      var dataUrl;
+      try {
+        dataUrl = logoBitmap.canvas.toDataURL("image/png");
+      } catch (e) {
+        return;
+      }
+      var logos = gate.querySelectorAll(".home-intro-gate__logo");
+      for (var i = 0; i < logos.length; i++) {
+        logos[i].src = dataUrl;
+        logos[i].style.aspectRatio =
+          config.logoFrameAspect > 0 ? String(config.logoFrameAspect) : "377 / 150";
+      }
+    };
+
+    var openSplit = function () {
+      if (splitStarted) return;
+      splitStarted = true;
+      sequenceEnded = true;
+      if (raf) window.cancelAnimationFrame(raf);
+      raf = 0;
+
+      syncPanelLogos();
+      gate.classList.add("is-logo-ready");
+      /* Força reflow para a transição das metades arrancar a seguir */
+      void gate.offsetWidth;
+      gate.classList.add("is-opening");
+
+      window.setTimeout(finishGate, config.splitMs + 40);
+    };
+
+    var abortIntro = function () {
+      sequenceEnded = true;
+      if (raf) window.cancelAnimationFrame(raf);
+      raf = 0;
+      gate.classList.add("is-logo-ready", "is-opening", "is-done");
+      markHomeIntroSeen();
     };
 
     var render = function (now) {
@@ -448,7 +487,7 @@
         ctx.restore();
       }
 
-      if (bitmapAlpha > 0.001 && logoBitmap && t < tExitStart) {
+      if (bitmapAlpha > 0.001 && logoBitmap) {
         ctx.save();
         ctx.globalAlpha = bitmapAlpha;
         var crB = layout.sourceCrop;
@@ -466,55 +505,12 @@
         ctx.restore();
       }
 
-      if (t >= tExitStart && logoBitmap) {
-        var exitU = clamp01((t - tExitStart) / LOGO_EXIT_MS);
-        /* ease-in t⁴: a aproximação começa cedo e acelera no fim. */
-        var exitEase = easeInPow4(exitU);
-        var exitScale = 1 + 21 * exitEase;
-        var exitAlpha = 1 - exitEase;
-        var exitBlur = 8 * exitEase;
-
-        ctx.save();
-        ctx.globalAlpha = exitAlpha;
-        ctx.filter = "blur(" + exitBlur.toFixed(2) + "px)";
-        var cw = canvas.width / dpr;
-        var ch = canvas.height / dpr;
-        var exitDriftX = Math.min(cw * 0.3, 520);
-        var exitDriftY = Math.min(ch * 0.455, 700);
-        ctx.translate(
-          layout.cx - exitDriftX * exitEase,
-          layout.cy - exitDriftY * exitEase
-        );
-        ctx.scale(exitScale, exitScale);
-        var crE = layout.sourceCrop;
-        ctx.drawImage(
-          logoBitmap.canvas,
-          crE.sx,
-          crE.sy,
-          crE.sw,
-          crE.sh,
-          -layout.logoW / 2,
-          -layout.logoH / 2,
-          layout.logoW,
-          layout.logoH
-        );
-        ctx.restore();
-      }
-
-      if (t >= tExitEnd) {
-        finishCanvasIntro();
+      if (t >= tCrossfadeEnd) {
+        openSplit();
         return;
       }
 
       raf = window.requestAnimationFrame(render);
-    };
-
-    var stop = function () {
-      sequenceEnded = true;
-      if (raf) window.cancelAnimationFrame(raf);
-      raf = 0;
-      ctx && ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
-      canvas.style.visibility = "hidden";
     };
 
     setSize();
@@ -523,7 +519,7 @@
       function (image) {
         logoBitmap = prepareLogoSprite(image);
         if (!logoBitmap) {
-          stop();
+          abortIntro();
           return;
         }
         particles = buildParticlesFromImage();
@@ -533,12 +529,12 @@
         raf = window.requestAnimationFrame(render);
       },
       function () {
-        stop();
+        abortIntro();
       }
     );
 
     var onResize = function () {
-      if (sequenceEnded) return;
+      if (sequenceEnded || splitStarted) return;
       setSize();
       if (logoBitmap) {
         particles = buildParticlesFromImage();
@@ -546,11 +542,15 @@
     };
 
     window.addEventListener("resize", onResize);
-    window.addEventListener("pagehide", stop, { once: true });
+    window.addEventListener("pagehide", function () {
+      if (!splitStarted) abortIntro();
+    }, { once: true });
   };
 
-  if (introCanvas) {
-    runHomeIntroPixels(introCanvas);
+  if (introCanvas && introGate && !homeIntroAlreadySeen) {
+    runHomeIntroPixels(introCanvas, introGate);
+  } else if (introGate && homeIntroAlreadySeen) {
+    introGate.classList.add("is-done");
   }
 
   if (revealEls.length) {

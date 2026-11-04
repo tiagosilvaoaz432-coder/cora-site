@@ -50,22 +50,36 @@
 
   <main class="home-main" data-home id="conteudo-principal">
     <section class="home-slogan" id="inicio" aria-label="Slogan">
-      <canvas
-        class="home-intro-canvas"
-        data-home-intro-canvas
-        aria-hidden="true"
-      ></canvas>
-      <img
-        src="Log%C3%B3tipo%20svg.svg"
-        alt=""
-        class="home-intro-logo"
-        data-home-intro-logo
-        width="1254"
-        height="1254"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
+      <div class="home-intro-gate" data-home-intro-gate aria-hidden="true">
+        <div class="home-intro-gate__panel home-intro-gate__panel--top">
+          <img
+            src="Log%C3%B3tipo%20svg.svg"
+            alt=""
+            class="home-intro-gate__logo"
+            width="1254"
+            height="1254"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+        <div class="home-intro-gate__panel home-intro-gate__panel--bottom">
+          <img
+            src="Log%C3%B3tipo%20svg.svg"
+            alt=""
+            class="home-intro-gate__logo"
+            width="1254"
+            height="1254"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+        <canvas
+          class="home-intro-canvas"
+          data-home-intro-canvas
+          aria-hidden="true"
+        ></canvas>
+      </div>
       <div class="home-slogan__inner">
         <p class="home-slogan__brand">CO:RA</p>
         <h1 class="home-slogan__title">
