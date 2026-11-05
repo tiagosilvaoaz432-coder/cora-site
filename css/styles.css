@@ -2444,12 +2444,80 @@ select {
   color: var(--gray);
 }
 
+.equipa-tabs {
+  margin-top: 0.25rem;
+}
+
+.equipa-tabs__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.15rem;
+  margin: 0 0 1.75rem;
+  padding: 0 0 0.85rem;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.equipa-tabs__btn {
+  appearance: none;
+  margin: 0;
+  padding: 0.55rem 0.95rem;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--gray);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: background 0.25s var(--ease-out), color 0.25s var(--ease-out);
+}
+
+.equipa-tabs__btn:hover {
+  color: var(--black);
+}
+
+.equipa-tabs__btn.is-active {
+  background: var(--cream);
+  color: var(--black);
+}
+
+.equipa-tabs__btn:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 2px;
+}
+
+.equipa-tabs__panel {
+  display: none;
+}
+
+.equipa-tabs__panel.is-active {
+  display: block;
+}
+
 .equipa-division {
   margin-bottom: clamp(2.75rem, 6vw, 4rem);
 }
 
-.equipa-division:last-child {
+.equipa-tabs__panel.equipa-division {
   margin-bottom: 0;
+}
+
+.equipa-heading {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  line-height: 1.1;
+}
+
+.equipa-empty {
+  margin: 0;
+  max-width: 28rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--gray);
 }
 
 .equipa-subheading {
@@ -3784,7 +3852,9 @@ select {
 .page-editorial .valores-grid,
 .page-editorial .junior-feature,
 .page-editorial .equipa-lead,
-.page-editorial .equipa-meta,
+.page-editorial .equipa-heading,
+.page-editorial .equipa-empty,
+.page-editorial .equipa-tabs__btn,
 .page-editorial .equipa-note,
 .page-editorial .rec-step,
 .page-editorial .contact-place,
@@ -4321,15 +4391,6 @@ select {
 .junior-visual strong {
   font: clamp(30px, 3.6vw, 58px) / 1.02 var(--font-home-display);
   letter-spacing: -0.05em;
-}
-
-.equipa-meta {
-  margin: 0 0 2rem;
-  color: #555;
-}
-
-.equipa-meta p {
-  margin: 0.35rem 0;
 }
 
 .equipa-note {

@@ -57,23 +57,69 @@
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  var markHomeIntroSeen = function () {
+  /* Em páginas internas: a próxima visita à home (sem reload) salta o intro. */
+  var markInternalNav = function () {
     try {
-      sessionStorage.setItem("cora-home-intro-seen", "1");
+      sessionStorage.setItem("cora-skip-home-intro", "1");
+      sessionStorage.removeItem("cora-home-intro-seen");
     } catch (e) {
       /* ignore */
     }
+  };
+
+  var getNavType = function () {
+    try {
+      var nav = performance.getEntriesByType("navigation")[0];
+      return nav ? nav.type : "navigate";
+    } catch (e) {
+      return "navigate";
+    }
+  };
+
+  var shouldSkipHomeIntro = function () {
+    if (getNavType() === "reload") {
+      try {
+        sessionStorage.removeItem("cora-skip-home-intro");
+      } catch (e) {
+        /* ignore */
+      }
+      return false;
+    }
+    try {
+      if (sessionStorage.getItem("cora-skip-home-intro") === "1") return true;
+    } catch (e2) {
+      /* ignore */
+    }
+    if (document.referrer) {
+      try {
+        if (new URL(document.referrer).origin === location.origin) return true;
+      } catch (e3) {
+        /* ignore */
+      }
+    }
+    return false;
+  };
+
+  /* Só esconde o gate nesta pintura; não bloqueia o próximo reload. */
+  var dismissHomeIntro = function () {
     document.documentElement.classList.add("home-intro-seen");
   };
 
-  var homeIntroAlreadySeen = false;
-  try {
-    homeIntroAlreadySeen = sessionStorage.getItem("cora-home-intro-seen") === "1";
-  } catch (e) {
-    homeIntroAlreadySeen = document.documentElement.classList.contains("home-intro-seen");
-  }
-  if (homeIntroAlreadySeen) {
-    document.documentElement.classList.add("home-intro-seen");
+  var homeIntroSkipped = false;
+  if (home) {
+    homeIntroSkipped = shouldSkipHomeIntro();
+    if (homeIntroSkipped) {
+      dismissHomeIntro();
+    } else {
+      document.documentElement.classList.remove("home-intro-seen");
+      try {
+        sessionStorage.removeItem("cora-skip-home-intro");
+      } catch (e4) {
+        /* ignore */
+      }
+    }
+  } else {
+    markInternalNav();
   }
 
   var servicosIndex = document.querySelector("main.page-servicos .servicos-index");
@@ -106,7 +152,7 @@
   }
 
   if (reduced) {
-    markHomeIntroSeen();
+    if (home) dismissHomeIntro();
     revealEls.forEach(function (el) {
       el.classList.add("is-visible");
     });
@@ -405,7 +451,7 @@
 
     var finishGate = function () {
       gate.classList.add("is-done");
-      markHomeIntroSeen();
+      dismissHomeIntro();
       try {
         canvas.width = 0;
         canvas.height = 0;
@@ -451,7 +497,7 @@
       if (raf) window.cancelAnimationFrame(raf);
       raf = 0;
       gate.classList.add("is-logo-ready", "is-opening", "is-done");
-      markHomeIntroSeen();
+      dismissHomeIntro();
     };
 
     var render = function (now) {
@@ -547,10 +593,35 @@
     }, { once: true });
   };
 
-  if (introCanvas && introGate && !homeIntroAlreadySeen) {
+  if (introCanvas && introGate && !homeIntroSkipped) {
     runHomeIntroPixels(introCanvas, introGate);
-  } else if (introGate && homeIntroAlreadySeen) {
+  } else if (introGate && homeIntroSkipped) {
     introGate.classList.add("is-done");
+  }
+
+  /* Ao sair da home para outra página do site, marca navegação interna. */
+  if (home) {
+    document.addEventListener(
+      "click",
+      function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+        if (!a) return;
+        var href = a.getAttribute("href");
+        if (!href || href.charAt(0) === "#" || href.indexOf("mailto:") === 0 || href.indexOf("tel:") === 0) {
+          return;
+        }
+        try {
+          var url = new URL(a.href, location.href);
+          if (url.origin !== location.origin) return;
+          var file = url.pathname.split("/").pop() || "";
+          var isHome = file === "" || file === "index.html";
+          if (!isHome) markInternalNav();
+        } catch (err) {
+          /* ignore */
+        }
+      },
+      true
+    );
   }
 
   if (revealEls.length) {
@@ -619,5 +690,54 @@
       teamIdx = (teamIdx + 1) % slideCount;
       teamTrack.style.transform = "translateX(-" + (teamIdx * (100 / slideCount)) + "%)";
     }, 3000);
+  }
+
+  var equipaTabs = document.querySelector("[data-equipa-tabs]");
+  if (equipaTabs) {
+    var tabButtons = Array.prototype.slice.call(
+      equipaTabs.querySelectorAll("[data-equipa-tab]")
+    );
+    var tabPanels = Array.prototype.slice.call(
+      equipaTabs.querySelectorAll("[data-equipa-panel]")
+    );
+
+    var activateEquipaTab = function (id, focusTab) {
+      tabButtons.forEach(function (btn) {
+        var selected = btn.getAttribute("data-equipa-tab") === id;
+        btn.classList.toggle("is-active", selected);
+        btn.setAttribute("aria-selected", selected ? "true" : "false");
+        btn.tabIndex = selected ? 0 : -1;
+        if (selected && focusTab) btn.focus();
+      });
+      tabPanels.forEach(function (panel) {
+        var active = panel.getAttribute("data-equipa-panel") === id;
+        panel.classList.toggle("is-active", active);
+        if (active) panel.removeAttribute("hidden");
+        else panel.setAttribute("hidden", "");
+      });
+    };
+
+    tabButtons.forEach(function (btn, index) {
+      btn.addEventListener("click", function () {
+        activateEquipaTab(btn.getAttribute("data-equipa-tab"), false);
+      });
+
+      btn.addEventListener("keydown", function (e) {
+        var nextIndex = index;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+          nextIndex = (index + 1) % tabButtons.length;
+        } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+          nextIndex = (index - 1 + tabButtons.length) % tabButtons.length;
+        } else if (e.key === "Home") {
+          nextIndex = 0;
+        } else if (e.key === "End") {
+          nextIndex = tabButtons.length - 1;
+        } else {
+          return;
+        }
+        e.preventDefault();
+        activateEquipaTab(tabButtons[nextIndex].getAttribute("data-equipa-tab"), true);
+      });
+    });
   }
 })();

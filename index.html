@@ -10,11 +10,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <script>
-    try {
-      if (sessionStorage.getItem("cora-home-intro-seen") === "1") {
-        document.documentElement.classList.add("home-intro-seen");
-      }
-    } catch (e) {}
+    /* Skip do intro só em navegação interna; reload / entrada direta mostram sempre. */
+    (function () {
+      try {
+        sessionStorage.removeItem("cora-home-intro-seen");
+      } catch (e0) {}
+      var skip = false;
+      try {
+        var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+        var type = nav ? nav.type : "";
+        if (type === "reload") {
+          sessionStorage.removeItem("cora-skip-home-intro");
+        } else if (sessionStorage.getItem("cora-skip-home-intro") === "1") {
+          skip = true;
+        } else if (document.referrer) {
+          var ref = new URL(document.referrer);
+          if (ref.origin === location.origin) skip = true;
+        }
+      } catch (e1) {}
+      if (skip) document.documentElement.classList.add("home-intro-seen");
+    })();
   </script>
 </head>
 <body>
