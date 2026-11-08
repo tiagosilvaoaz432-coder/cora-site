@@ -6,6 +6,13 @@
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+
+    /* Altura real do header, para âncoras e para o índice fixo dos Serviços. */
+    var syncHeaderH = function () {
+      document.documentElement.style.setProperty("--header-h", header.offsetHeight + "px");
+    };
+    syncHeaderH();
+    if (window.ResizeObserver) new ResizeObserver(syncHeaderH).observe(header);
   }
 
   var navToggle = document.querySelector("[data-nav-toggle]");
@@ -25,6 +32,11 @@
 
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") setNavOpen(false);
+    });
+
+    /* Fecha o menu ao escolher um link (inclui âncoras na mesma página, ex.: Equipa). */
+    navMain.addEventListener("click", function (e) {
+      if (e.target.closest && e.target.closest("a[href]")) setNavOpen(false);
     });
 
     document.addEventListener("click", function (e) {
